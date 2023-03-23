@@ -1,0 +1,57 @@
+{
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "airbnb",
+    "airbnb-typescript"
+  ],
+
+  "parserOptions": {
+    "requireConfigFile": false,
+    "project": "./tsconfig.json"
+  },
+
+  "rules": {
+    "@typescript-eslint/no-unused-vars": "off",
+    "react/jsx-no-constructed-context-values": "off",
+    "react/require-default-props": "off",
+    "react/destructuring-assignment": "off",
+    "jsx-a11y/label-has-associated-control": "off",
+    "react/prop-types": "off",
+    "react/function-component-definition": "off",
+    "react/prefer-stateless-function": "off",
+    "react/jsx-one-expression-per-line": "off",
+    "react/jsx-filename-extension": "off",
+    "@typescript-eslint/lines-between-class-members": "off",
+    "no-nested-ternary": "off",
+    "no-param-reassign": "off",
+    "no-await-in-loop": "off",
+    "no-restricted-syntax": "off",
+    "prefer-template": "off",
+    "prefer-const": "off",
+    "max-classes-per-file": "off",
+    "no-unused-expressions": "off",
+    "class-methods-use-this": "off",
+    "no-underscore-dangle": "off",
+    "no-new": "off",
+    "consistent-return": "off",
+    "arrow-body-style": "off",
+    "no-return-assign": "off",
+    "no-shadow": "off",
+    "no-plusplus": "off",
+    "max-len": "off",
+    "quotes": ["warn", "single"],
+    "import/prefer-default-export": "off",
+    "import/no-cycle": "off",
+    "no-console": "warn",
+    "import/extensions": [
+      "error",
+      {
+        "js": "ignorePackages"
+      }
+    ]
+  }
+}
