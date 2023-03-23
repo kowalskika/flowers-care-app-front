@@ -12,6 +12,10 @@ html, body {
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  background-image: url("../public/assets/styles/background/bbcg.png");
+  background-size: 100%;
+  background-color: rgba(214,236,226);
+  min-width: 1060px;
 }
 img, picture, video, canvas, svg {
   display: block;

@@ -1,0 +1,27 @@
+table {
+    text-align: left;
+    border: black 1px solid;
+    width: 60vw;
+    max-width: 1000px;
+    margin: 0 auto 20px ;
+    background-color: black;
+    font-size: 18px;
+}
+
+table td, table th {
+    padding: 4px 10px;
+    min-width: 100px;
+
+}
+
+table tr {
+    margin: 30px;
+    background-color: #f8f8e3;
+}
+
+table tr:nth-child(2n) {
+    background-color: rgb(234, 234, 208);
+}
+thead>tr>th {
+    background-color: rgb(189, 232, 213);
+}
