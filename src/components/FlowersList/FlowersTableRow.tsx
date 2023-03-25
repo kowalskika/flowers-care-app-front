@@ -10,23 +10,31 @@ interface Props {
 
 export const FlowersTableRow = (props: Props) => {
   const { flower, onFlowerChange } = props;
+  const {
+    id, name, species, wateredAt, nextWateringAt,
+  } = flower;
   return (
     <tr>
       <th>
-        <Link to={`/flower/${flower.id}`}>
-          {flower.name}
+        <Link to={`/flower/${id}`}>
+          {name}
         </Link>
       </th>
       <td>
-        <p>{flower.species}</p>
+        <p>{species}</p>
       </td>
       <td>
+        <p>{wateredAt.slice(0, 10)}</p>
+      </td>
+      <td>
+        <p>{nextWateringAt}</p>
         <button type="submit">
-          Podlej
+          Podlano
         </button>
       </td>
+
       <td>
-        <DeleteButton flower={flower} onFlowerChange={onFlowerChange} />
+        <DeleteButton flower={{ id, name }} onFlowerChange={onFlowerChange} />
       </td>
     </tr>
   );

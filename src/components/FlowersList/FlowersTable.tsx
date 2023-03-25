@@ -15,8 +15,9 @@ export const FlowersTable = (props: Props) => {
         <tr>
           <th>Nazwa</th>
           <th>Gatunek</th>
-          <th>Podlano</th>
-          <th>Usuń</th>
+          <th>Data ostatniego podlewania</th>
+          <th>Data następnego podlewania</th>
+          <th>Opcje</th>
         </tr>
       </thead>
       <tbody>

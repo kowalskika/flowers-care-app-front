@@ -9,14 +9,8 @@ interface Props {
 
 export const OneFlowerTable = (props: Props) => {
   const {
-    id, name, fertilizedAt, info, replantedAt, species, wateredAt, wateringInterval,
+    name, fertilizedAt, info, replantedAt, species, wateredAt, wateringInterval, nextWateringAt,
   } = props.flowerInfo;
-
-  function addDays(date: Date, days: number) {
-    const copy = new Date(Number(date));
-    copy.setDate(date.getDate() + days);
-    return copy;
-  }
 
   return (
     <>
@@ -41,7 +35,7 @@ export const OneFlowerTable = (props: Props) => {
           />
           <OneFlowerTableRow
             name="Data następnego podlewania"
-            variable={(addDays(new Date(wateredAt), Number(wateringInterval)).toJSON().slice(0, 10))}
+            variable={nextWateringAt}
           />
           {replantedAt && (
           <OneFlowerTableRow

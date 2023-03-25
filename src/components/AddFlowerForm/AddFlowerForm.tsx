@@ -12,6 +12,7 @@ export const AddFlowerForm = () => {
     replantedAt: '',
     fertilizedAt: '',
     wateringInterval: 0,
+    nextWateringAt: '',
   });
   const [loading, setLoading] = useState<boolean>(false);
   const [resultInfo, setResultInfo] = useState<string | null>(null);

@@ -1,9 +1,11 @@
 import React, { MouseEvent } from 'react';
-import { FlowerEntity } from 'types';
 import './DeleteButton.css';
 
 interface Props {
-  flower: FlowerEntity;
+  flower: {
+    name: string,
+    id: string | undefined,
+  };
   onFlowerChange: () => void
 }
 
