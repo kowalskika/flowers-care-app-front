@@ -2,9 +2,12 @@
   box-sizing: border-box;
 }
 * {
-  padding: 0;
-  margin: 0;
   font-family: Calibri, sans-serif;
+  color: black;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  box-sizing: border-box;
 }
 html, body {
   height: 100%;

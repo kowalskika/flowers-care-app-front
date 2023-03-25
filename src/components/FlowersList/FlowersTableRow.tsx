@@ -1,7 +1,7 @@
 import React from 'react';
 import { FlowerEntity } from 'types';
 import { Link } from 'react-router-dom';
-import { DeleteButton } from '../DeleteButton/DeleteButton';
+import { DeleteButton } from '../common/DeleteButton/DeleteButton';
 
 interface Props {
   flower: FlowerEntity;

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { FlowerEntity } from 'types';
-import { Link, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Spinner } from '../components/common/Spinner/Spinner';
 import { OneFlowerTable } from '../components/OneFlowerTable/OneFlowerTable';
+import { Header } from '../components/common/Header/Header';
 
 export const SingleFlowerView = () => {
   const [flowerInfo, setFlowerInfo] = useState<FlowerEntity | null>(null);
@@ -21,11 +22,9 @@ export const SingleFlowerView = () => {
 
   return (
     <>
+      <Header goBack />
       <OneFlowerTable flowerInfo={flowerInfo} />
       <br />
-      <p>
-        <Link to="/flower">Go back to list</Link>
-      </p>
     </>
   );
 };

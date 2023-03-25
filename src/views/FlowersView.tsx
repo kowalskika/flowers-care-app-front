@@ -1,12 +1,14 @@
 import React from 'react';
-import { FlowersList } from '../components/Flowers/FlowersList';
-import { AddFlower } from '../components/AddFlower/AddFlower';
+import { AddButton } from '../components/common/AddButton/AddButton';
+import { FlowersList } from '../components/FlowersList/FlowersList';
+import { Header } from '../components/common/Header/Header';
 
 export const FlowersView = () => {
   return (
     <>
+      <Header goBack={false} />
       <FlowersList />
-      <AddFlower />
+      <AddButton />
     </>
   );
 };

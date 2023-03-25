@@ -1,11 +1,11 @@
 import React from 'react';
-import './OneFlowerRow.css';
+import './OneFlowerTableRow.css';
 
 interface Props {
   name: string;
   variable: string | number | undefined;
 }
-export function OneTableRow(props: Props) {
+export function OneFlowerTableRow(props: Props) {
   const { name, variable } = props;
   return (
     <tr>

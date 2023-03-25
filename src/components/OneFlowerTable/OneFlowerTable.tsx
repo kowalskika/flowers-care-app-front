@@ -1,6 +1,6 @@
 import React from 'react';
 import { FlowerEntity } from 'types';
-import { OneTableRow } from '../OneTableRow/OneTableRow';
+import { OneFlowerTableRow } from './OneFlowerTableRow';
 import './OneFlowerTable.css';
 
 interface Props {
@@ -8,54 +8,55 @@ interface Props {
 }
 
 export const OneFlowerTable = (props: Props) => {
+  const {
+    id, name, fertilizedAt, info, replantedAt, species, wateredAt, wateringInterval,
+  } = props.flowerInfo;
+
   function addDays(date: Date, days: number) {
     const copy = new Date(Number(date));
     copy.setDate(date.getDate() + days);
     return copy;
   }
 
-  const {
-    id, name, fertilizedAt, info, replantedAt, species, wateredAt, wateringInterval,
-  } = props.flowerInfo;
   return (
     <>
       <h1>{`${name} - szczegóły`}</h1>
       <table className="one-flower-table">
         <tbody>
-          <OneTableRow
+          <OneFlowerTableRow
             name="Nazwa"
             variable={name}
           />
-          <OneTableRow
+          <OneFlowerTableRow
             name="Gatunek"
             variable={species}
           />
-          <OneTableRow
+          <OneFlowerTableRow
             name="Data ostatniego podlania"
             variable={wateredAt.slice(0, 10)}
           />
-          <OneTableRow
+          <OneFlowerTableRow
             name="Interwał podlewania"
             variable={`${wateringInterval} dni`}
           />
-          <OneTableRow
+          <OneFlowerTableRow
             name="Data następnego podlewania"
             variable={(addDays(new Date(wateredAt), Number(wateringInterval)).toJSON().slice(0, 10))}
           />
           {replantedAt && (
-          <OneTableRow
+          <OneFlowerTableRow
             name="Data ostatniego przesadzania"
             variable={replantedAt.slice(0, 10)}
           />
           )}
           {fertilizedAt && (
-          <OneTableRow
+          <OneFlowerTableRow
             name="Data ostatniego nawożenia"
             variable={fertilizedAt.slice(0, 10)}
           />
           )}
           {info && (
-          <OneTableRow
+          <OneFlowerTableRow
             name="Informacje dodatkowe"
             variable={info}
           />
