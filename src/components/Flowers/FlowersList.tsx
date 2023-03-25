@@ -3,7 +3,6 @@ import { FlowerEntity } from 'types';
 import { Spinner } from '../common/Spinner/Spinner';
 import { FlowersTable } from './FlowersTable';
 import './FlowersList.css';
-import { Header } from '../common/Header/Header';
 
 export const FlowersList = () => {
   const [data, setData] = useState<FlowerEntity[] | null>(null);
@@ -23,7 +22,6 @@ export const FlowersList = () => {
 
   return (
     <div>
-      <Header />
       <FlowersTable
         flowersList={data}
         onFlowerChange={refreshFlowerList}

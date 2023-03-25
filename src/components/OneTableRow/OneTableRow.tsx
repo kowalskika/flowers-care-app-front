@@ -1,4 +1,5 @@
 import React from 'react';
+import './OneFlowerRow.css';
 
 interface Props {
   name: string;
