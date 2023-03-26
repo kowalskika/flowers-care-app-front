@@ -85,7 +85,7 @@ export const AddFlowerForm = () => {
               <label>Data ostatniego podlania: <br />
                 <input
                   type="date"
-                  value={form.wateredAt}
+                  value={form.wateredAt as string}
                   onChange={(e) => updateForm('wateredAt', e.target.value)}
                 />
               </label>
@@ -107,7 +107,7 @@ export const AddFlowerForm = () => {
               <label>Data ostatniego przesadzania: <br />
                 <input
                   type="date"
-                  value={form.replantedAt}
+                  value={form.replantedAt as string}
                   onChange={(e) => updateForm('replantedAt', e.target.value)}
                 />
               </label>
@@ -118,7 +118,7 @@ export const AddFlowerForm = () => {
               <label>Data ostatniego nawożenia: <br />
                 <input
                   type="date"
-                  value={form.fertilizedAt}
+                  value={form.fertilizedAt as string}
                   onChange={(e) => updateForm('fertilizedAt', e.target.value)}
                 />
               </label>

@@ -26,9 +26,8 @@ export const DeleteButton = (props: Props) => {
     props.onFlowerChange();
   };
   return (
-    <button type="submit" onClick={deleteFlower}>
-      <img className="btn delete" src="/assets/styles/icons/delete.png" alt="usuń kwiat" />
-      Usuń
+    <button type="submit" className="btn" onClick={deleteFlower}>
+      <img className="btn-img" src="/assets/styles/icons/delete.png" alt="usuń kwiat" />Usuń
     </button>
   );
 };

@@ -9,7 +9,7 @@ interface Props {
 
 export const OneFlowerTable = (props: Props) => {
   const {
-    name, fertilizedAt, info, replantedAt, species, wateredAt, wateringInterval, nextWateringAt,
+    id, name, fertilizedAt, info, replantedAt, species, wateredAt, wateringInterval, nextWateringAt,
   } = props.flowerInfo;
 
   return (
@@ -27,7 +27,7 @@ export const OneFlowerTable = (props: Props) => {
           />
           <OneFlowerTableRow
             name="Data ostatniego podlania"
-            variable={wateredAt.slice(0, 10)}
+            variable={wateredAt}
           />
           <OneFlowerTableRow
             name="Interwał podlewania"
@@ -36,17 +36,20 @@ export const OneFlowerTable = (props: Props) => {
           <OneFlowerTableRow
             name="Data następnego podlewania"
             variable={nextWateringAt}
+            nextWateringAt={nextWateringAt}
+            wateringInterval={wateringInterval}
+            id={id}
           />
           {replantedAt && (
           <OneFlowerTableRow
             name="Data ostatniego przesadzania"
-            variable={replantedAt.slice(0, 10)}
+            variable={replantedAt}
           />
           )}
           {fertilizedAt && (
           <OneFlowerTableRow
             name="Data ostatniego nawożenia"
-            variable={fertilizedAt.slice(0, 10)}
+            variable={fertilizedAt}
           />
           )}
           {info && (
