@@ -17,7 +17,9 @@ export const FlowersTableRow = (props: Props) => {
   const [wateredAtNewDate, setWateredAtNewDate] = useState(wateredAt);
 
   const dateChange = () => {
-    setWateredAtNewDate(new Date().toLocaleDateString('fr-CH'));
+    const newDate = new Date().toLocaleDateString('fr-CH');
+    setWateredAtNewDate(newDate);
+    return newDate;
   };
 
   return (

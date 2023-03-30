@@ -14,8 +14,10 @@ export function OneFlowerTableRow({ flower }: Props) {
   const [color, setColor] = useState('black');
   const [wateredAtNewDate, setWateredAtNewDate] = useState(wateredAt);
 
-  const dateChange = () => {
-    setWateredAtNewDate(new Date().toLocaleDateString('fr-CH'));
+  const dateChange = (): string => {
+    const newDate = new Date().toLocaleDateString('fr-CH');
+    setWateredAtNewDate(newDate);
+    return newDate;
   };
 
   const changeColor = (fontColor: string) => {
