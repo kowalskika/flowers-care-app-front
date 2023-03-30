@@ -2,6 +2,16 @@ import React, { FormEvent, useState } from 'react';
 import { FlowerEntity, CreateFlowerReq } from 'types';
 import { Spinner } from '../common/Spinner/Spinner';
 
+enum FlowerUpdateForm {
+  name = 'name',
+  wateredAt = 'wateredAt',
+  info = 'info',
+  species = 'species',
+  replantedAt = 'replantedAt',
+  fertilizedAt = 'fertilizedAt',
+  wateringInterval = 'wateringInterval',
+}
+
 export const AddFlowerForm = () => {
   const [form, setForm] = useState<CreateFlowerReq>({
     name: '',
@@ -17,7 +27,7 @@ export const AddFlowerForm = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [resultInfo, setResultInfo] = useState<string | null>(null);
 
-  const updateForm = (key: string, value: any) => {
+  const updateForm = (key: FlowerUpdateForm, value: any) => {
     setForm((prevForm) => ({
       ...prevForm,
       [key]: value,
@@ -64,7 +74,7 @@ export const AddFlowerForm = () => {
                 <input
                   type="text"
                   value={form.name}
-                  onChange={(e) => updateForm('name', e.target.value)}
+                  onChange={(e) => updateForm(FlowerUpdateForm.name, e.target.value)}
                 />
               </label>
             </th>
@@ -75,7 +85,7 @@ export const AddFlowerForm = () => {
                 <input
                   type="text"
                   value={form.species}
-                  onChange={(e) => updateForm('species', e.target.value)}
+                  onChange={(e) => updateForm(FlowerUpdateForm.species, e.target.value)}
                 />
               </label>
             </th>
@@ -86,7 +96,7 @@ export const AddFlowerForm = () => {
                 <input
                   type="date"
                   value={form.wateredAt as string}
-                  onChange={(e) => updateForm('wateredAt', e.target.value)}
+                  onChange={(e) => updateForm(FlowerUpdateForm.wateredAt, e.target.value)}
                 />
               </label>
             </th>
@@ -97,7 +107,7 @@ export const AddFlowerForm = () => {
                 <input
                   type="number"
                   value={form.wateringInterval}
-                  onChange={(e) => updateForm('wateringInterval', e.target.value)}
+                  onChange={(e) => updateForm(FlowerUpdateForm.wateringInterval, e.target.value)}
                 />
               </label>
             </th>
@@ -108,7 +118,7 @@ export const AddFlowerForm = () => {
                 <input
                   type="date"
                   value={form.replantedAt as string}
-                  onChange={(e) => updateForm('replantedAt', e.target.value)}
+                  onChange={(e) => updateForm(FlowerUpdateForm.replantedAt, e.target.value)}
                 />
               </label>
             </th>
@@ -119,7 +129,7 @@ export const AddFlowerForm = () => {
                 <input
                   type="date"
                   value={form.fertilizedAt as string}
-                  onChange={(e) => updateForm('fertilizedAt', e.target.value)}
+                  onChange={(e) => updateForm(FlowerUpdateForm.fertilizedAt, e.target.value)}
                 />
               </label>
             </th>
@@ -129,7 +139,7 @@ export const AddFlowerForm = () => {
               <label>Dodatkowe informacje: <br />
                 <textarea
                   value={form.info}
-                  onChange={(e) => updateForm('info', e.target.value)}
+                  onChange={(e) => updateForm(FlowerUpdateForm.info, e.target.value)}
                 />
               </label>
             </th>

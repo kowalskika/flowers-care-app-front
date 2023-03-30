@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FlowerEntity } from 'types';
 import { Link } from 'react-router-dom';
 import { DeleteButton } from '../common/DeleteButton/DeleteButton';
@@ -14,6 +14,12 @@ export const FlowersTableRow = (props: Props) => {
   const {
     id, name, species, wateredAt, nextWateringAt, wateringInterval,
   } = flower;
+  const [wateredAtNewDate, setWateredAtNewDate] = useState(wateredAt);
+
+  const dateChange = () => {
+    setWateredAtNewDate(new Date().toLocaleDateString('fr-CH'));
+  };
+
   return (
     <tr>
       <th>
@@ -25,10 +31,10 @@ export const FlowersTableRow = (props: Props) => {
         <p>{species}</p>
       </td>
       <td>
-        <p>{wateredAt as string}</p>
+        <p>{wateredAtNewDate as string}</p>
       </td>
       <td>
-        <WateringButton id={id} nextWateringAt={nextWateringAt} wateringInterval={wateringInterval} />
+        <WateringButton id={id} nextWateringAt={nextWateringAt} wateringInterval={wateringInterval} dateChange={dateChange} />
       </td>
 
       <td>

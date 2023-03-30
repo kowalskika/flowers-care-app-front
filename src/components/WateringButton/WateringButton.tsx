@@ -7,19 +7,30 @@ interface Props {
   id: string | undefined;
   nextWateringAt: string;
   wateringInterval: number;
+  dateChange: () => void,
+  changeColor?: (fontColor: string) => void,
 }
 export const WateringButton = (props: Props) => {
-  const { nextWateringAt, id, wateringInterval } = props;
+  const {
+    nextWateringAt, id, wateringInterval, dateChange, changeColor,
+  } = props;
   const [color, setColor] = useState('black');
   const [nextWateringDate, setNextWateringDate] = useState(nextWateringAt);
 
   useEffect(() => {
     const fontColor = checkWateringDate(nextWateringAt as string);
     setColor(fontColor);
+    if (changeColor) {
+      changeColor(fontColor);
+    }
   }, [nextWateringAt]);
 
   const updatedWateringDate = async (e: FormEvent) => {
+    dateChange();
     setColor('black');
+    if (changeColor) {
+      changeColor('black');
+    }
     setNextWateringDate(addDays(new Date(), wateringInterval).toLocaleDateString('fr-CH'));
     e.preventDefault();
     await fetch(`http://localhost:3001/flower/${id}`, {
