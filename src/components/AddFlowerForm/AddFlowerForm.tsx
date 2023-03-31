@@ -146,7 +146,7 @@ export const AddFlowerForm = () => {
           </tr>
         </tbody>
       </table>
-      <button type="submit">Add</button>
+      <button className="btn" type="submit"><img className="btn-img" src="/assets/styles/icons/add.png" alt="usuń kwiat" />Dodaj</button>
     </form>
   );
 };
