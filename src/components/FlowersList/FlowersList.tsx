@@ -15,7 +15,9 @@ export const FlowersList = () => {
   };
 
   useEffect(() => {
-    refreshFlowerList();
+    (async () => {
+      await refreshFlowerList();
+    })();
   }, []);
 
   if (data === null) return <Spinner />;

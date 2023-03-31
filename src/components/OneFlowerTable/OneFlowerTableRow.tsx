@@ -30,10 +30,14 @@ export function OneFlowerTableRow({ flower }: Props) {
         <th>Nazwa:</th>
         <td>{name} </td>
       </tr>
+
+      {species && (
       <tr>
         <th>Gatunek:</th>
         <td>{species} </td>
       </tr>
+      )}
+
       <tr>
         <th>Data ostatniego podlania:</th>
         <td>{wateredAtNewDate} </td>
@@ -46,7 +50,7 @@ export function OneFlowerTableRow({ flower }: Props) {
         <th><p style={{ color }}>Data następnego podlewania:</p></th>
         <td><WateringButton id={id} wateringInterval={wateringInterval as number} nextWateringAt={nextWateringAt} dateChange={dateChange} changeColor={changeColor} /></td>
       </tr>
-      {wateredAt && (
+      {replantedAt && (
       <tr>
         <th>Data ostatniego przesadzania:</th>
         <td>{replantedAt} </td>

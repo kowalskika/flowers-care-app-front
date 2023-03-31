@@ -22,12 +22,18 @@ export const SingleFlowerView = () => {
       const data = await res.json();
       setFlowerInfo(data);
       setFlowerInfoToEditForm(data);
-      setFlowerInfoToEditForm((prev: any) => ({
-        ...prev,
-        replantedAt: dateStringToFormDateInput(prev.replantedAt),
-        wateredAt: dateStringToFormDateInput(prev.wateredAt),
-        fertilizedAt: dateStringToFormDateInput(prev.fertilizedAt),
-      }));
+      setFlowerInfoToEditForm((prev: any) => {
+        return (
+          {
+            ...prev,
+            replantedAt:
+          prev.replantedAt ? dateStringToFormDateInput(prev.replantedAt) : null,
+            wateredAt:
+          dateStringToFormDateInput(prev.wateredAt),
+            fertilizedAt:
+          prev.fertilizedAt !== null ? dateStringToFormDateInput(prev.fertilizedAt) : null,
+          });
+      });
     } catch (err: any) {
       setError(err);
     }
