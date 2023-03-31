@@ -1,0 +1,7 @@
+td, th{
+    line-height: 1.4rem;
+}
+th {
+    background-color: rgb(189, 232, 213);
+    width: 230px;
+}

@@ -1,0 +1,8 @@
+.added-flower-info {
+    display: flex;
+    justify-content: center;
+}
+.added-flower-info-btn {
+    display: flex;
+    justify-content: space-between;
+}
