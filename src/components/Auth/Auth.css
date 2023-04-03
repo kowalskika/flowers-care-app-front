@@ -1,0 +1,95 @@
+.Auth {
+    padding: .5rem;
+}
+
+.Auth form {
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: #668844;
+    padding: 2rem;
+    border-radius: .3rem;
+    gap: 1rem;
+    width: 100%;
+    max-width: 500px;
+    margin-top: max(5vh, 1rem);
+    margin-bottom: 2rem;
+}
+
+.Auth label {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.Auth label span {
+    position: absolute;
+    top: 1.6rem;
+    right: .5rem;
+    color: red;
+    font-size: 1.5rem;
+}
+
+.Auth label p {
+    padding: .5rem;
+    font-size: .8rem;
+    color: rgba(255, 196, 0, 0.51);
+}
+
+.Auth input {
+    flex-grow: 1;
+    padding: .5rem 2rem .5rem .5rem;
+    background-color: #434759;
+    border-radius: .3rem;
+    border: none;
+    font-size: 1rem;
+    color: #ffc400;
+    margin-top: .1rem;
+}
+
+.Auth input:focus {
+    outline: 1px solid #ffc400;
+}
+
+.Auth button {
+    align-self: center;
+    background-color: #ffc400;
+    padding: .5rem 2rem;
+    border-radius: 10rem;
+    border: none;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #2f3241;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+.Auth button[disabled] {
+    background-color: #725d19;
+    cursor: not-allowed;
+}
+
+.Auth .error {
+    text-align: center;
+    color: #ee002e;
+}
+
+.Auth .success {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #00d300;
+    font-weight: 700;
+}
+
+.Auth .success a {
+    text-decoration: underline;
+}
+
+.Auth .redirect-paraph {
+    text-align: center;
+    color: #ffc400;
+}
+
+.Auth .redirect-paraph a {
+    text-decoration: underline;
+}

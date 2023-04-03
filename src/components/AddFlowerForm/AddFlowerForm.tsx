@@ -1,17 +1,10 @@
 import React, { FormEvent, useState } from 'react';
-import { FlowerEntity, CreateFlowerReq } from 'types';
+import { FlowerEntity, CreateFlowerReq, FlowerUpdateForm } from 'types';
+import { useNavigate } from 'react-router-dom';
 import { Spinner } from '../common/Spinner/Spinner';
 import './AddFlowerForm.css';
-
-enum FlowerUpdateForm {
-  name = 'name',
-  wateredAt = 'wateredAt',
-  info = 'info',
-  species = 'species',
-  replantedAt = 'replantedAt',
-  fertilizedAt = 'fertilizedAt',
-  wateringInterval = 'wateringInterval',
-}
+import { useAxiosPrivate } from '../../hooks/useAxiosPrivate';
+import { useAuth } from '../../hooks/useAuth';
 
 export const AddFlowerForm = () => {
   const [form, setForm] = useState<CreateFlowerReq>({
@@ -28,8 +21,11 @@ export const AddFlowerForm = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [resultInfo, setResultInfo] = useState<string | null>(null);
   const [flowerId, setFlowerId] = useState<string>('');
+  const axiosPrivate = useAxiosPrivate();
+  const navigate = useNavigate();
+  const { auth } = useAuth();
 
-  const updateForm = (key: FlowerUpdateForm, value: any) => {
+  const updateForm = (key: FlowerUpdateForm, value: string) => {
     setForm((prevForm) => ({
       ...prevForm,
       [key]: value,
@@ -39,16 +35,10 @@ export const AddFlowerForm = () => {
   const sendForm = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
-
+    console.log(auth?.id);
     try {
-      const res = await fetch('http://localhost:3001/flower', {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify(form),
-      });
-      const data: FlowerEntity = await res.json();
+      const { data } = await axiosPrivate.post('flower', { ...form, userId: auth?.id });
+      console.log(data);
       setLoading(false);
       setResultInfo(`Kwiat ${data.name} został dodany z id: ${data.id}.`);
       setFlowerId(data.id as string);
