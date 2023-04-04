@@ -16,6 +16,7 @@ export const DeleteButton = (props: Props) => {
   const { auth } = useAuth();
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
+
   const deleteFlower = async (e: MouseEvent) => {
     e.preventDefault();
     if (!window.confirm(`Czy napewno chcesz usunąć ${props.flower.name}?`)) {

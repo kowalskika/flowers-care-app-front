@@ -64,7 +64,12 @@ export const EditFlowerForm = ({ flower, refreshFlowerList }: EditFlowerFormProp
     setLoading(true);
 
     try {
-      await axiosPrivate.put(`flower/${flower.id}`, { ...form, userId: auth?.id });
+      await axiosPrivate.put(
+        `flower/${flower.id}`,
+        {
+          ...form, userId: auth?.id,
+        },
+      );
       setLoading(false);
       setIsUpdated(true);
     } finally {
