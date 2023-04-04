@@ -5,6 +5,7 @@ import { Spinner } from '../common/Spinner/Spinner';
 import './AddFlowerForm.css';
 import { useAxiosPrivate } from '../../hooks/useAxiosPrivate';
 import { useAuth } from '../../hooks/useAuth';
+import { AddButton } from '../common/AddButton/AddButton';
 
 export const AddFlowerForm = () => {
   const [form, setForm] = useState<CreateFlowerReq>({
@@ -138,7 +139,7 @@ export const AddFlowerForm = () => {
           </tr>
         </tbody>
       </table>
-      <button className="btn" type="submit"><img className="btn-img" src="/assets/styles/icons/add.png" alt="dodaj kwiat" />Dodaj</button>
+      <AddButton confirm />
     </form>
   );
 };

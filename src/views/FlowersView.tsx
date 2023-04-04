@@ -8,7 +8,7 @@ export const FlowersView = () => {
     <>
       <Header goBack={false} />
       <FlowersList />
-      <AddButton />
+      <AddButton confirm={false} />
     </>
   );
 };
