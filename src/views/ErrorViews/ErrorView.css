@@ -1,0 +1,28 @@
+.ErrorView {
+    padding: 1rem;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.ErrorView__top-paraph {
+    font-size: 3rem;
+    font-weight: 700;
+}
+
+.ErrorView__bottom-paraph {
+    font-size: 1.5rem;
+}
+
+.ErrorView__link {
+    display: block;
+    margin-top: 1rem;
+    border: 1px solid #1f36d3;
+    max-width: 200px;
+    border-radius: 50rem;
+    padding: .5rem;
+    color: #1f36d3;
+    margin-inline: auto;
+}
