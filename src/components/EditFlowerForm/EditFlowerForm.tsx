@@ -1,6 +1,8 @@
 import React, { FormEvent, useState, useEffect } from 'react';
 import { FlowerEntity } from 'types';
 import { Spinner } from '../common/Spinner/Spinner';
+import { useAxiosPrivate } from '../../hooks/useAxiosPrivate';
+import { useAuth } from '../../hooks/useAuth';
 
 enum FlowerUpdateForm {
   name = 'name',
@@ -28,6 +30,9 @@ export const EditFlowerForm = ({ flower, refreshFlowerList }: EditFlowerFormProp
     wateringInterval: flower.wateringInterval,
     nextWateringAt: flower.nextWateringAt,
   });
+
+  const axiosPrivate = useAxiosPrivate();
+  const { auth } = useAuth();
   const [loading, setLoading] = useState<boolean>(false);
   const [isUpdated, setIsUpdated] = useState<boolean>(true);
 
@@ -59,14 +64,7 @@ export const EditFlowerForm = ({ flower, refreshFlowerList }: EditFlowerFormProp
     setLoading(true);
 
     try {
-      const res = await fetch(`http://localhost:3001/flower/${flower.id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify(form),
-      });
-      await res.json();
+      await axiosPrivate.put(`flower/${flower.id}`, { ...form, userId: auth?.id });
       setLoading(false);
       setIsUpdated(true);
     } finally {
