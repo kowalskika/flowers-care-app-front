@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { FlowerEntity } from 'types';
-import { useNavigate } from 'react-router-dom';
 import { Spinner } from '../common/Spinner/Spinner';
 import { FlowersTable } from './FlowersTable';
 import './FlowersList.css';
@@ -10,7 +9,6 @@ import { useAuth } from '../../hooks/useAuth';
 export const FlowersList = () => {
   const { auth } = useAuth();
   const axiosPrivate = useAxiosPrivate();
-  const navigate = useNavigate();
   const [userData, setUserData] = useState<FlowerEntity[] | null>(null);
 
   const refreshFlowerList = async () => {
