@@ -2,6 +2,8 @@ import React, { FormEvent, useEffect, useState } from 'react';
 import './WateringButton.css';
 import { checkWateringDate } from '../../utils/checkWateringDate';
 import { addDays } from '../../utils/addDays';
+import { useAxiosPrivate } from '../../hooks/useAxiosPrivate';
+import { useAuth } from '../../hooks/useAuth';
 
 interface Props {
   id: string | undefined;
@@ -17,6 +19,8 @@ export const WateringButton = (props: Props) => {
   } = props;
   const [color, setColor] = useState('black');
   const [nextWateringDate, setNextWateringDate] = useState(nextWateringAt);
+  const axiosPrivate = useAxiosPrivate();
+  const { auth } = useAuth();
 
   useEffect(() => {
     const fontColor = checkWateringDate(nextWateringAt as string);
@@ -35,15 +39,7 @@ export const WateringButton = (props: Props) => {
     }
 
     e.preventDefault();
-    await fetch(`http://localhost:3001/flower/${id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        wateredAt: new Date().toISOString().slice(0, 19).replace('T', ' '),
-      }),
-    });
+    await axiosPrivate.patch(`flower/${id}`, { wateredAt: new Date().toISOString().slice(0, 19).replace('T', ' '), userId: auth?.id });
   };
 
   return (
