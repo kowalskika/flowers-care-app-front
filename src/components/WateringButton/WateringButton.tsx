@@ -1,5 +1,7 @@
 import React, { FormEvent, useEffect, useState } from 'react';
 import './WateringButton.css';
+import { useNavigate } from 'react-router-dom';
+import { AxiosError } from 'axios';
 import { checkWateringDate } from '../../utils/checkWateringDate';
 import { addDays } from '../../utils/addDays';
 import { useAxiosPrivate } from '../../hooks/useAxiosPrivate';
@@ -21,6 +23,7 @@ export const WateringButton = (props: Props) => {
   const [nextWateringDate, setNextWateringDate] = useState(nextWateringAt);
   const axiosPrivate = useAxiosPrivate();
   const { auth } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fontColor = checkWateringDate(nextWateringAt as string);
@@ -31,15 +34,31 @@ export const WateringButton = (props: Props) => {
   }, [nextWateringAt]);
 
   const updatedWateringDate = async (e: FormEvent) => {
+    e.preventDefault();
     dateChange();
-    setNextWateringDate(addDays(new Date(), wateringInterval).toLocaleDateString('fr-CH'));
     setColor('black');
+    setNextWateringDate(
+      addDays(new Date(), wateringInterval).toLocaleDateString('fr-CH'),
+    );
     if (changeColor) {
       changeColor('black');
     }
 
-    e.preventDefault();
-    await axiosPrivate.patch(`flower/${id}`, { wateredAt: new Date().toISOString().slice(0, 19).replace('T', ' '), userId: auth?.id });
+    try {
+      await axiosPrivate.patch(
+        `flower/${id}`,
+        {
+          wateredAt: new Date().toISOString().slice(0, 19).replace('T', ' '), userId: auth?.id,
+        },
+      );
+    } catch (err) {
+      const { response } = err as AxiosError;
+      if (response !== undefined && response.status === 404) {
+        navigate('/404');
+      } else {
+        navigate('/error');
+      }
+    }
   };
 
   return (
