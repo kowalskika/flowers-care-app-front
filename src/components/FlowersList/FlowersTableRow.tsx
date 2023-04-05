@@ -3,6 +3,7 @@ import { FlowerEntity } from 'types';
 import { Link } from 'react-router-dom';
 import { DeleteButton } from '../common/DeleteButton/DeleteButton';
 import { WateringButton } from '../WateringButton/WateringButton';
+import { InfoButton } from '../common/InfoButton/InfoButton';
 
 interface Props {
   flower: FlowerEntity;
@@ -40,9 +41,7 @@ export const FlowersTableRow = (props: Props) => {
       </td>
 
       <td>
-        <a className="btn" href={`/flower/${id}`}><img className="btn-img" src="/assets/styles/icons/info.png" alt="szczegóły" />
-          Szczegóły
-        </a>
+        <InfoButton id={id as string} />
         <DeleteButton flower={{ id, name }} onFlowerChange={onFlowerChange} />
       </td>
     </tr>
