@@ -1,8 +1,10 @@
 import React, { FormEvent, useState, useEffect } from 'react';
-import { FlowerEntity } from 'types';
+import { SlRocket, SlPencil } from 'react-icons/sl';
+import { FlowerEditForm, FlowerEntity } from 'types';
 import { Spinner } from '../common/Spinner/Spinner';
 import { useAxiosPrivate } from '../../hooks/useAxiosPrivate';
 import { useAuth } from '../../hooks/useAuth';
+import './EditFlowerForm.css';
 
 enum FlowerUpdateForm {
   name = 'name',
@@ -20,7 +22,8 @@ type EditFlowerFormProps = {
 };
 
 export const EditFlowerForm = ({ flower, refreshFlowerList }: EditFlowerFormProps) => {
-  const [form, setForm] = useState<any>({
+  const todayInputValue = new Date().toISOString().split('T')[0];
+  const [form, setForm] = useState<FlowerEditForm>({
     name: flower.name,
     wateredAt: flower.wateredAt,
     info: flower.info,
@@ -49,8 +52,8 @@ export const EditFlowerForm = ({ flower, refreshFlowerList }: EditFlowerFormProp
     });
   }, [flower]);
 
-  const updateForm = (key: FlowerUpdateForm, value: any) => {
-    setForm((prevForm: any) => {
+  const updateForm = (key: FlowerUpdateForm, value: string | number | Date) => {
+    setForm((prevForm) => {
       return {
         ...prevForm,
         [key]:
@@ -84,13 +87,14 @@ export const EditFlowerForm = ({ flower, refreshFlowerList }: EditFlowerFormProp
   if (!isUpdated) {
     return (
       <form onSubmit={sendForm}>
-        <h2>Edytuj dane:</h2>
+        <h1>Edytuj dane:</h1>
         <table className="one-flower-table">
-          <tbody>
+          <tbody className="EditFlowerForm__tbody">
             <tr>
               <th>
                 <label>Nazwa: <br />
                   <input
+                    className="EditFlowerForm__big-input"
                     type="text"
                     value={form.name}
                     onChange={(e) => updateForm(FlowerUpdateForm.name, e.target.value)}
@@ -102,6 +106,7 @@ export const EditFlowerForm = ({ flower, refreshFlowerList }: EditFlowerFormProp
               <th>
                 <label>Gatunek: <br />
                   <input
+                    className="EditFlowerForm__big-input"
                     type="text"
                     value={form.species}
                     onChange={(e) => updateForm(FlowerUpdateForm.species, e.target.value)}
@@ -113,6 +118,7 @@ export const EditFlowerForm = ({ flower, refreshFlowerList }: EditFlowerFormProp
               <th>
                 <label>Data ostatniego podlania: <br />
                   <input
+                    max={todayInputValue}
                     type="date"
                     value={form.wateredAt}
                     onChange={(e) => updateForm(FlowerUpdateForm.wateredAt, e.target.value)}
@@ -124,6 +130,7 @@ export const EditFlowerForm = ({ flower, refreshFlowerList }: EditFlowerFormProp
               <th>
                 <label>Interwał podlewania: <br />
                   <input
+                    min={1}
                     type="number"
                     value={form.wateringInterval}
                     onChange={(e) => updateForm(FlowerUpdateForm.wateringInterval, e.target.value)}
@@ -135,8 +142,9 @@ export const EditFlowerForm = ({ flower, refreshFlowerList }: EditFlowerFormProp
               <th>
                 <label>Data ostatniego przesadzania: <br />
                   <input
+                    max={todayInputValue}
                     type="date"
-                    value={form.replantedAt}
+                    value={form.replantedAt as string}
                     onChange={(e) => updateForm(FlowerUpdateForm.replantedAt, e.target.value)}
                   />
                 </label>
@@ -146,13 +154,15 @@ export const EditFlowerForm = ({ flower, refreshFlowerList }: EditFlowerFormProp
               <th>
                 <label>Data ostatniego nawożenia: <br />
                   <input
+                    max={todayInputValue}
                     type="date"
-                    value={form.fertilizedAt}
+                    value={form.fertilizedAt as string}
                     onChange={(e) => updateForm(FlowerUpdateForm.fertilizedAt, e.target.value)}
                   />
                 </label>
               </th>
             </tr>
+
             <tr>
               <th>
                 <label>Dodatkowe informacje: <br />
@@ -163,11 +173,20 @@ export const EditFlowerForm = ({ flower, refreshFlowerList }: EditFlowerFormProp
                 </label>
               </th>
             </tr>
+            <tr>
+              <th>
+                <div className="EditFlowerForm__container">
+                  <button className="EditButton__a" type="submit">
+                    <SlRocket />Zapisz
+                  </button>
+                </div>
+
+              </th>
+            </tr>
           </tbody>
         </table>
-        <button className="btn" type="submit"><img className="btn-img" src="/assets/styles/icons/diskette.png" alt="Zapisz" />Zapisz</button>
       </form>
     );
   }
-  return <button className="btn" type="submit" onClick={() => setIsUpdated(false)}><img className="btn-img" src="/assets/styles/icons/edit.png" alt="Edytuj" />Edytuj</button>;
+  return <button className="EditButton__a" type="submit" onClick={() => setIsUpdated(false)}><SlPencil />Edytuj</button>;
 };
