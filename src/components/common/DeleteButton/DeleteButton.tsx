@@ -1,4 +1,6 @@
 import React, { MouseEvent } from 'react';
+import { SlTrash } from 'react-icons/sl';
+
 import './DeleteButton.css';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../hooks/useAuth';
@@ -36,8 +38,8 @@ export const DeleteButton = (props: Props) => {
     props.onFlowerChange();
   };
   return (
-    <button type="submit" className="btn" onClick={deleteFlower}>
-      <img className="btn-img" src="/assets/styles/icons/delete.png" alt="usuń kwiat" />Usuń
+    <button type="submit" className="DeleteButton__btn" onClick={deleteFlower}>
+      <SlTrash />Usuń
     </button>
   );
 };
