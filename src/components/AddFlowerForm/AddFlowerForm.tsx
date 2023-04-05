@@ -51,13 +51,14 @@ export const AddFlowerForm = () => {
   }
   return (
     <form onSubmit={sendForm}>
-      <h2>Add flower</h2>
+      <h1>Dodaj nowy kwiat</h1>
       <table className="one-flower-table">
-        <tbody>
+        <tbody className="AddFlowerForm__tbody">
           <tr>
             <th>
               <label>Nazwa: <br />
                 <input
+                  className="AddFlowerForm__big-input"
                   required
                   type="text"
                   value={form.name}
@@ -70,6 +71,7 @@ export const AddFlowerForm = () => {
             <th>
               <label>Gatunek: <br />
                 <input
+                  className="AddFlowerForm__big-input"
                   type="text"
                   value={form.species}
                   onChange={(e) => updateForm(FlowerUpdateForm.species, e.target.value)}
@@ -137,9 +139,15 @@ export const AddFlowerForm = () => {
               </label>
             </th>
           </tr>
+          <tr>
+            <th>
+              <div className="EditFlowerForm__container">
+                <AddButton confirm />
+              </div>
+            </th>
+          </tr>
         </tbody>
       </table>
-      <AddButton confirm />
     </form>
   );
 };

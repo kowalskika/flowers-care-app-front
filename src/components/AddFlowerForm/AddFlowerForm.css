@@ -1,8 +1,21 @@
-.added-flower-info {
+.AddFlowerForm__tbody input{
+    width: 25%;
+    font-size: 0.95rem;
+}
+
+.AddFlowerForm__tbody .AddFlowerForm__big-input{
+    width: 100%;
+    height: 2rem;
+}
+
+
+.AddFlowerForm__tbody textarea {
+    width: 100%;
+    height: 10rem;
+    font-size: 0.95rem;
+}
+
+.AddFlowerForm__container {
     display: flex;
     justify-content: center;
-}
-.added-flower-info-btn {
-    display: flex;
-    justify-content: space-between;
 }
