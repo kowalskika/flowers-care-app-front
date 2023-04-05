@@ -1,0 +1,21 @@
+.InfoButton__a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    z-index: 1;
+    padding: .5rem 1rem;
+    border-radius: .3rem;
+    background-color: #58885f;
+    overflow: hidden;
+    font-size: 1rem;
+    transition: all 0.5s ease 0s;
+    color: white;
+    margin-bottom: 5px;
+    width: 140px;
+}
+
+.InfoButton__a:hover{
+    color: #000000;
+    background-color: #b3ea81;
+}
