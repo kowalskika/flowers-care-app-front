@@ -1,16 +1,20 @@
-.btn {
-    width: 120px;
-    background-color: rgba(255, 255, 255, 0.7);
-    padding: 6px 10px 6px 30px;
+.WateringButton__button {
     position: relative;
-    border: solid 2px #2a4d2a;
-    border-radius: 10px;
-    display: block;
-    margin-top: 3px;
-    transition: 0.8s;
+    display: flex;
+    align-items: center;
+    border: none;
+    gap: .5rem;
+    z-index: 1;
+    padding: .5rem 1rem;
+    border-radius: .3rem;
+    background-color: #58885f;
+    overflow: hidden;
+    font-size: 1rem;
+    transition: all 0.5s ease 0s;
+    color: white;
 }
-.btn:hover{
-    background-color: rgb(189, 232, 213);
-    border: solid 2px #000000;
 
+.WateringButton__button:hover{
+    color: #000000;
+    background-color: #b3ea81;
 }

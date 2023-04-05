@@ -1,11 +1,13 @@
 import React, { FormEvent, useEffect, useState } from 'react';
-import './WateringButton.css';
 import { useNavigate } from 'react-router-dom';
 import { AxiosError } from 'axios';
+import { SlDrop } from 'react-icons/sl';
+
 import { checkWateringDate } from '../../utils/checkWateringDate';
 import { addDays } from '../../utils/addDays';
 import { useAxiosPrivate } from '../../hooks/useAxiosPrivate';
 import { useAuth } from '../../hooks/useAuth';
+import './WateringButton.css';
 
 interface Props {
   id: string | undefined;
@@ -53,23 +55,15 @@ export const WateringButton = (props: Props) => {
       );
     } catch (err) {
       const { response } = err as AxiosError;
-      if (response !== undefined && response.status === 404) {
-        navigate('/404');
-      } else {
-        navigate('/error');
-      }
+      navigate(response?.status === 404 ? '/404' : '/error');
     }
   };
 
   return (
     <>
       <p style={{ color }}>{nextWateringDate}</p>
-      <button className="btn" type="submit" onClick={updatedWateringDate}>
-        <img
-          className="btn-img"
-          src="/assets/styles/icons/watering-plants.png"
-          alt="Podlej"
-        />Podlano
+      <button className="WateringButton__button" type="submit" onClick={updatedWateringDate}>
+        <SlDrop />Podlej
       </button>
     </>
 
