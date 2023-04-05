@@ -1,9 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&family=Roboto&display=swap');
 *, *::before, *::after {
   box-sizing: border-box;
 }
 * {
-  font-family: Calibri, sans-serif;
-  color: black;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
   margin: 0;
   padding: 0;
   text-decoration: none;
@@ -18,7 +19,6 @@ body {
   background-image: url("../public/assets/styles/background/bbcg.png");
   background-size: 100%;
   background-color: rgba(214,236,226);
-  min-width: 1060px;
 }
 img, picture, video, canvas, svg {
   display: block;

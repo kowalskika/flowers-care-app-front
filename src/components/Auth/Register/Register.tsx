@@ -5,17 +5,16 @@ import { IoCloseCircleOutline } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 import { useUserValidation } from '../../../hooks/useRegisterValidation';
 import { axios } from '../../../api/axios';
-import { useLoading } from '../../../hooks/useLoading';
 import { Spinner } from '../../common/Spinner/Spinner';
 
 export const Register = () => {
+  const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [passwordRepetition, setPasswordRepetition] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   const loginLinkRef = useRef<HTMLAnchorElement>(null!);
-  const { loading, toggleLoading } = useLoading(false);
   const {
     emailError,
     passwordError,
@@ -38,25 +37,25 @@ export const Register = () => {
       if (!email || !password || !passwordRepetition || emailError || passwordError || passwordRepetitionError) {
         return;
       }
-      toggleLoading(true);
+      setLoading(true);
       await axios.post('user', { email, password });
       setError('');
       setPassword('');
       setPasswordRepetition('');
       setSuccess(true);
     } catch (err: any) {
-      const message = err.response?.data?.message || 'Sorry. Something went wrong. Please try again later.';
+      const message = 'Wystąpił nieoczekiwany błąd. Spróbuj ponownie później.';
       setSuccess(false);
       setError(message);
     } finally {
-      toggleLoading(false);
+      setLoading(false);
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <h2>Register new account</h2>
-      <label>Email:
+      <h2>Zarejestruj się</h2>
+      <label>Adres email:
         <input
           type="email"
           value={email}
@@ -66,12 +65,12 @@ export const Register = () => {
         { emailError && (
           <>
             <span><IoCloseCircleOutline /></span>
-            <p>Email is not valid.</p>
+            <p>Podany adres email jest nieprawidłowy.</p>
           </>
         ) }
       </label>
 
-      <label>Password:
+      <label>Hasło:
         <input
           type="password"
           value={password}
@@ -81,14 +80,14 @@ export const Register = () => {
         { passwordError && (
           <>
             <span><IoCloseCircleOutline /></span>
-            <p>Password must be at least 8 characters long and has to contain 1 normal letter, 1 capital letter, 1
-              number, and any of special character - "?", "!", "@", "#", "$", "%"
+            <p>Hasło musi zawierać conajmniej 8 znaków oraz zawierać 1 zwykłą literę, 1 dużą literę, 1
+              cyfrę oraz któryś ze znaków specjalnych - "?", "!", "@", "#", "$", "%"
             </p>
           </>
         ) }
       </label>
 
-      <label>Repeat password:
+      <label>Powtórz hasło:
         <input
           type="password"
           value={passwordRepetition}
@@ -98,7 +97,7 @@ export const Register = () => {
         { passwordRepetitionError && (
           <>
             <span><IoCloseCircleOutline /></span>
-            <p>Passwords don't match.</p>
+            <p>Podane hasła nie są jednakowe.</p>
           </>
         ) }
       </label>
@@ -107,13 +106,13 @@ export const Register = () => {
         type="submit"
         disabled={!email || !password || !passwordRepetition || emailError || passwordError || passwordRepetitionError || !!error}
       >
-        Register
+        Zarejestruj
         { loading && <Spinner /> }
       </button>
 
       { error && <p className="error">{ error }</p> }
-      { success && <p className="success">Success! <Link ref={loginLinkRef} to="/login">Click</Link> to login.</p> }
-      { !success && <p className="redirect-paraph">If you have an account click <Link to="/login">here</Link> to go to the login page.</p> }
+      { success && <p className="success">Konto zostało utworzone. Kliknij<Link ref={loginLinkRef} to="/login">tutaj</Link> by się zalogować.</p> }
+      { !success && <p className="redirect-paraph">Jeśli masz już konto kliknij <Link to="/login">tutaj</Link> aby przejść do strony logowania.</p> }
 
     </form>
   );
