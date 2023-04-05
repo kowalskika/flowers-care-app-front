@@ -1,14 +1,13 @@
 import React from 'react';
-import { AddButton } from '../components/common/AddButton/AddButton';
 import { FlowersList } from '../components/FlowersList/FlowersList';
-import { Header } from '../components/common/Header/Header';
+import { NavBar } from '../components/common/NavBar/NavBar';
 
 export const FlowersView = () => {
   return (
     <>
-      <Header goBack={false} />
+      <NavBar page="main" />
+      <h1> Twoje kwiaty</h1>
       <FlowersList />
-      <AddButton confirm={false} />
     </>
   );
 };
