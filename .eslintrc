@@ -20,6 +20,8 @@
     "react/jsx-no-constructed-context-values": "off",
     "react/require-default-props": "off",
     "react/destructuring-assignment": "off",
+    "jsx-a11y/no-noninteractive-tabindex": "off",
+    "jsx-a11y/tabindex-no-positive ": "off",
     "jsx-a11y/label-has-associated-control": "off",
     "react/prop-types": "off",
     "react/function-component-definition": "off",
