@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { FlowerEntity } from 'types';
+import { FlowerEditForm, FlowerEntity, FlowerEntityRes } from 'types';
 import { useNavigate, useParams } from 'react-router-dom';
 import { AxiosError } from 'axios';
 
+import './OneFlower.css';
 import { Spinner } from '../common/Spinner/Spinner';
 import { OneFlowerTable } from './OneFlowerTable';
 import { EditFlowerForm } from '../EditFlowerForm/EditFlowerForm';
@@ -16,19 +17,30 @@ export const OneFlower = () => {
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
 
+  const flowerInfoForm = {
+    name: '',
+    wateredAt: '',
+    info: '',
+    species: '',
+    replantedAt: '',
+    fertilizedAt: '',
+    wateringInterval: 0,
+    nextWateringAt: '',
+  };
+
   const [flowerInfo, setFlowerInfo] = useState<FlowerEntity | null>(null);
-  const [flowerInfoToEditForm, setFlowerInfoToEditForm] = useState<any | null>(null);
+  const [flowerInfoToEditForm, setFlowerInfoToEditForm] = useState<FlowerEditForm>(flowerInfoForm);
 
   const refreshFlowerList = async () => {
     setFlowerInfo(null);
-    setFlowerInfoToEditForm(null);
+    setFlowerInfoToEditForm(flowerInfoForm);
 
     try {
       if (auth) {
-        const { data } = await axiosPrivate.get(`flower/${flowerId}?user=${auth.id}`);
+        const { data } = (await axiosPrivate.get(`flower/${flowerId}?user=${auth.id}`)) as FlowerEntityRes;
         setFlowerInfo(data);
         setFlowerInfoToEditForm(data);
-        setFlowerInfoToEditForm((prev: any) => {
+        setFlowerInfoToEditForm((prev) => {
           return (
             {
               ...prev,
@@ -37,7 +49,7 @@ export const OneFlower = () => {
               wateredAt:
                 dateStringToFormDateInput(prev.wateredAt),
               fertilizedAt:
-                prev.fertilizedAt !== null ? dateStringToFormDateInput(prev.fertilizedAt) : null,
+                prev.fertilizedAt !== null ? dateStringToFormDateInput(prev.fertilizedAt as string) : null,
             });
         });
       }
@@ -61,7 +73,9 @@ export const OneFlower = () => {
     <>
       <OneFlowerTable flowerInfo={flowerInfo} />
       <br />
-      <EditFlowerForm flower={flowerInfoToEditForm as FlowerEntity} refreshFlowerList={refreshFlowerList} />
+      <div className="OneFlower__EditFlower-container">
+        <EditFlowerForm flower={flowerInfoToEditForm as FlowerEntity} refreshFlowerList={refreshFlowerList} />
+      </div>
     </>
   );
 };
