@@ -1,12 +1,12 @@
 import React from 'react';
 
-import { Header } from '../components/common/Header/Header';
+import { NavBar } from '../components/common/NavBar/NavBar';
 import { OneFlower } from '../components/OneFlower/OneFlower';
 
 export const SingleFlowerView = () => {
   return (
     <>
-      <Header goBack />
+      <NavBar page="single" />
       <OneFlower />
     </>
   );
