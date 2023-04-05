@@ -1,19 +1,14 @@
 import React from 'react';
 import './GoBackButton.css';
+import { Link } from 'react-router-dom';
+import { SlArrowLeftCircle } from 'react-icons/sl';
 
-interface Props {
-  goBack: boolean;
-}
-
-export const GoBackButton = (props: Props) => {
-  if (!props.goBack) {
-    return null;
-  }
+export const GoBackButton = () => {
   return (
-    <div className="go-back">
-      <a href="/flower">
-        <img src="/assets/styles/icons/redo.png" alt="Powrót" />
-      </a>
-    </div>
+    <Link
+      to="/"
+    >
+      <SlArrowLeftCircle /> Powrót
+    </Link>
   );
 };

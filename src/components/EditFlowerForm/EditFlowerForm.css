@@ -1,0 +1,41 @@
+.EditFlowerForm__tbody input{
+    width: 25%;
+    font-size: 0.95rem;
+}
+
+.EditFlowerForm__tbody .EditFlowerForm__big-input{
+    width: 100%;
+    height: 2rem;
+}
+
+.EditFlowerForm__container {
+    display: flex;
+    justify-content: center;
+}
+
+
+.EditFlowerForm__tbody textarea {
+    width: 100%;
+    height: 10rem;
+    font-size: 0.95rem;
+}
+.EditButton__a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    z-index: 1;
+    padding: .5rem 1rem;
+    border-radius: .3rem;
+    background-color: #58885f;
+    overflow: hidden;
+    font-size: 1rem;
+    transition: all 0.5s ease 0s;
+    color: white;
+    border: none;
+}
+
+.EditButton__a:hover{
+    color: #000000;
+    background-color: #b3ea81;
+}

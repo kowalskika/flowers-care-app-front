@@ -1,7 +1,13 @@
 import React, { FormEvent, useEffect, useState } from 'react';
-import './WateringButton.css';
+import { useNavigate } from 'react-router-dom';
+import { AxiosError } from 'axios';
+import { SlDrop } from 'react-icons/sl';
+
 import { checkWateringDate } from '../../utils/checkWateringDate';
 import { addDays } from '../../utils/addDays';
+import { useAxiosPrivate } from '../../hooks/useAxiosPrivate';
+import { useAuth } from '../../hooks/useAuth';
+import './WateringButton.css';
 
 interface Props {
   id: string | undefined;
@@ -17,6 +23,9 @@ export const WateringButton = (props: Props) => {
   } = props;
   const [color, setColor] = useState('black');
   const [nextWateringDate, setNextWateringDate] = useState(nextWateringAt);
+  const axiosPrivate = useAxiosPrivate();
+  const { auth } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fontColor = checkWateringDate(nextWateringAt as string);
@@ -27,34 +36,34 @@ export const WateringButton = (props: Props) => {
   }, [nextWateringAt]);
 
   const updatedWateringDate = async (e: FormEvent) => {
+    e.preventDefault();
     dateChange();
-    setNextWateringDate(addDays(new Date(), wateringInterval).toLocaleDateString('fr-CH'));
     setColor('black');
+    setNextWateringDate(
+      addDays(new Date(), wateringInterval).toLocaleDateString('fr-CH'),
+    );
     if (changeColor) {
       changeColor('black');
     }
 
-    e.preventDefault();
-    await fetch(`http://localhost:3001/flower/${id}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body: JSON.stringify({
-        wateredAt: new Date().toISOString().slice(0, 19).replace('T', ' '),
-      }),
-    });
+    try {
+      await axiosPrivate.patch(
+        `flower/${id}`,
+        {
+          wateredAt: new Date().toISOString().slice(0, 19).replace('T', ' '), userId: auth?.id,
+        },
+      );
+    } catch (err) {
+      const { response } = err as AxiosError;
+      navigate(response?.status === 404 ? '/404' : '/error');
+    }
   };
 
   return (
     <>
       <p style={{ color }}>{nextWateringDate}</p>
-      <button className="btn" type="submit" onClick={updatedWateringDate}>
-        <img
-          className="btn-img"
-          src="/assets/styles/icons/watering-plants.png"
-          alt="Podlej"
-        />Podlano
+      <button className="WateringButton__button" type="submit" onClick={updatedWateringDate}>
+        <SlDrop />Podlej
       </button>
     </>
 

@@ -1,11 +1,11 @@
 import React from 'react';
 import { AddFlowerForm } from '../components/AddFlowerForm/AddFlowerForm';
-import { Header } from '../components/common/Header/Header';
+import { NavBar } from '../components/common/NavBar/NavBar';
 
 export const AddFlowerView = () => {
   return (
     <>
-      <Header goBack />
+      <NavBar page="single" />
       <AddFlowerForm />
     </>
   );

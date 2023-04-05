@@ -1,31 +1,49 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AxiosError } from 'axios';
 import { FlowerEntity } from 'types';
 import { Spinner } from '../common/Spinner/Spinner';
 import { FlowersTable } from './FlowersTable';
 import './FlowersList.css';
+import { useAxiosPrivate } from '../../hooks/useAxiosPrivate';
+import { useAuth } from '../../hooks/useAuth';
 
 export const FlowersList = () => {
-  const [data, setData] = useState<FlowerEntity[] | null>(null);
+  const { auth } = useAuth();
+  const axiosPrivate = useAxiosPrivate();
+  const navigate = useNavigate();
+
+  const [userData, setUserData] = useState<FlowerEntity[] | null>(null);
 
   const refreshFlowerList = async () => {
-    setData(null);
-
-    const res = await fetch('http://localhost:3001/flower');
-    setData(await res.json());
+    setUserData(null);
+    try {
+      if (auth) {
+        const { data } = await axiosPrivate.get(`flower/?user=${auth.id}`);
+        setUserData(data);
+      }
+    } catch (err) {
+      const { response } = err as AxiosError;
+      if (response !== undefined && response.status === 404) {
+        navigate('/404');
+      } else {
+        navigate('/error');
+      }
+    }
   };
 
   useEffect(() => {
     (async () => {
       await refreshFlowerList();
     })();
-  }, []);
+  }, [auth, setUserData, axiosPrivate]);
 
-  if (data === null) return <Spinner />;
+  if (userData === null) return <Spinner />;
 
   return (
     <div>
       <FlowersTable
-        flowersList={data}
+        flowersList={userData}
         onFlowerChange={refreshFlowerList}
       />
     </div>

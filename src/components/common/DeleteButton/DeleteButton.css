@@ -1,10 +1,21 @@
-button>img, a>img{
-    width: 25px;
+.DeleteButton__btn {
+    position: relative;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    z-index: 1;
+    padding: .5rem 1rem;
+    border-radius: .3rem;
+    background-color: #58885f;
+    overflow: hidden;
+    font-size: 1rem;
+    transition: all 0.5s ease 0s;
+    color: white;
+    width: 140px;
 }
 
-button, a {
-    border: none;
-    cursor: pointer;
-    background-color: transparent;
-    font-size: 18px;
+.DeleteButton__btn:hover{
+    color: #000000;
+    background-color: #b3ea81;
 }

@@ -1,17 +1,11 @@
 import React, { FormEvent, useState } from 'react';
-import { FlowerEntity, CreateFlowerReq } from 'types';
+import { CreateFlowerReq, FlowerUpdateForm } from 'types';
+import { useNavigate } from 'react-router-dom';
 import { Spinner } from '../common/Spinner/Spinner';
 import './AddFlowerForm.css';
-
-enum FlowerUpdateForm {
-  name = 'name',
-  wateredAt = 'wateredAt',
-  info = 'info',
-  species = 'species',
-  replantedAt = 'replantedAt',
-  fertilizedAt = 'fertilizedAt',
-  wateringInterval = 'wateringInterval',
-}
+import { useAxiosPrivate } from '../../hooks/useAxiosPrivate';
+import { useAuth } from '../../hooks/useAuth';
+import { AddButton } from '../common/AddButton/AddButton';
 
 export const AddFlowerForm = () => {
   const [form, setForm] = useState<CreateFlowerReq>({
@@ -26,10 +20,12 @@ export const AddFlowerForm = () => {
     nextWateringAt: '',
   });
   const [loading, setLoading] = useState<boolean>(false);
-  const [resultInfo, setResultInfo] = useState<string | null>(null);
-  const [flowerId, setFlowerId] = useState<string>('');
-
-  const updateForm = (key: FlowerUpdateForm, value: any) => {
+  const [flowerId, setFlowerId] = useState<string | null>(null);
+  const axiosPrivate = useAxiosPrivate();
+  const navigate = useNavigate();
+  const { auth } = useAuth();
+  const todayInputValue = new Date().toISOString().split('T')[0];
+  const updateForm = (key: FlowerUpdateForm, value: string) => {
     setForm((prevForm) => ({
       ...prevForm,
       [key]: value,
@@ -39,47 +35,30 @@ export const AddFlowerForm = () => {
   const sendForm = async (e: FormEvent) => {
     e.preventDefault();
     setLoading(true);
-
+    setFlowerId(null);
     try {
-      const res = await fetch('http://localhost:3001/flower', {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json',
-        },
-        body: JSON.stringify(form),
-      });
-      const data: FlowerEntity = await res.json();
+      const { data } = await axiosPrivate.post('flower', { ...form, userId: auth?.id });
       setLoading(false);
-      setResultInfo(`Kwiat ${data.name} został dodany z id: ${data.id}.`);
-      setFlowerId(data.id as string);
+      setFlowerId(data.id);
     } finally {
       setLoading(false);
     }
   };
 
   if (loading) { return <Spinner />; }
-  if (resultInfo !== null) {
-    return (
-      <div className="added-flower-info">
-        <p>
-          <strong>{resultInfo}</strong>
-          <a className="btn" href={`/flower/${flowerId}`}><img className="btn-img" src="/assets/styles/icons/info.png" alt="szczegóły" />
-            Szczegóły
-          </a>
-        </p>
-
-      </div>
-    );
+  if (flowerId !== null) {
+    navigate('/flower');
   }
   return (
     <form onSubmit={sendForm}>
-      <h2>Add flower</h2>
+      <h1>Dodaj nowy kwiat</h1>
       <table className="one-flower-table">
-        <tbody>
+        <tbody className="AddFlowerForm__tbody">
           <tr>
             <th>
               <label>Nazwa: <br />
                 <input
+                  className="AddFlowerForm__big-input"
                   required
                   type="text"
                   value={form.name}
@@ -92,6 +71,7 @@ export const AddFlowerForm = () => {
             <th>
               <label>Gatunek: <br />
                 <input
+                  className="AddFlowerForm__big-input"
                   type="text"
                   value={form.species}
                   onChange={(e) => updateForm(FlowerUpdateForm.species, e.target.value)}
@@ -104,6 +84,7 @@ export const AddFlowerForm = () => {
               <label>Data ostatniego podlania: <br />
                 <input
                   required
+                  max={todayInputValue}
                   type="date"
                   value={form.wateredAt as string}
                   onChange={(e) => updateForm(FlowerUpdateForm.wateredAt, e.target.value)}
@@ -129,6 +110,7 @@ export const AddFlowerForm = () => {
               <label>Data ostatniego przesadzania: <br />
                 <input
                   type="date"
+                  max={todayInputValue}
                   value={form.replantedAt as string}
                   onChange={(e) => updateForm(FlowerUpdateForm.replantedAt, e.target.value)}
                 />
@@ -140,6 +122,7 @@ export const AddFlowerForm = () => {
               <label>Data ostatniego nawożenia: <br />
                 <input
                   type="date"
+                  max={todayInputValue}
                   value={form.fertilizedAt as string}
                   onChange={(e) => updateForm(FlowerUpdateForm.fertilizedAt, e.target.value)}
                 />
@@ -156,9 +139,15 @@ export const AddFlowerForm = () => {
               </label>
             </th>
           </tr>
+          <tr>
+            <th>
+              <div className="EditFlowerForm__container">
+                <AddButton confirm />
+              </div>
+            </th>
+          </tr>
         </tbody>
       </table>
-      <button className="btn" type="submit"><img className="btn-img" src="/assets/styles/icons/add.png" alt="usuń kwiat" />Dodaj</button>
     </form>
   );
 };

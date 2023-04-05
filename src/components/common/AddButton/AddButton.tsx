@@ -1,13 +1,20 @@
 import React from 'react';
+import { SlPlus, SlRocket } from 'react-icons/sl';
+
 import './AddButton.css';
 
-export const AddButton = () => {
+export const AddButton = (props: { confirm: boolean }) => {
+  const { confirm } = props;
+  if (confirm) {
+    return (
+      <button className="AddButton__a" type="submit">
+        <SlRocket />Zapisz
+      </button>
+    );
+  }
   return (
-    <div className="add-btn">
-      <a href="/flower/form/add">
-        <img className="btn-img" src="/assets/styles/icons/add.png" alt="dodaj kwiat" />
-        <p className="add-btn-p">Dodaj następny</p>
-      </a>
-    </div>
+    <a className="AddButton__a" href="/flower/form/add">
+      <SlPlus />Dodaj
+    </a>
   );
 };
