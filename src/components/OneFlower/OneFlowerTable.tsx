@@ -9,6 +9,7 @@ interface Props {
 
 export const OneFlowerTable = ({ flowerInfo }: Props) => {
   const { name } = flowerInfo;
+
   return (
     <>
       <h1>{`${name} - szczegóły`}</h1>

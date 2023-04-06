@@ -19,3 +19,6 @@
     display: flex;
     justify-content: center;
 }
+.AddFlowerForm__tbody th {
+    border-right: none;
+}

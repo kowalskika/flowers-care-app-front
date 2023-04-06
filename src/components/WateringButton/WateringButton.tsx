@@ -21,7 +21,7 @@ export const WateringButton = (props: Props) => {
   const {
     nextWateringAt, id, wateringInterval, dateChange, changeColor,
   } = props;
-  const [color, setColor] = useState('black');
+  const [color, setColor] = useState('white');
   const [nextWateringDate, setNextWateringDate] = useState(nextWateringAt);
   const axiosPrivate = useAxiosPrivate();
   const { auth } = useAuth();
@@ -38,12 +38,12 @@ export const WateringButton = (props: Props) => {
   const updatedWateringDate = async (e: FormEvent) => {
     e.preventDefault();
     dateChange();
-    setColor('black');
+    setColor('white');
     setNextWateringDate(
       addDays(new Date(), wateringInterval).toLocaleDateString('fr-CH'),
     );
     if (changeColor) {
-      changeColor('black');
+      changeColor('white');
     }
 
     try {

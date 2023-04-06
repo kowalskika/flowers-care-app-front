@@ -7,7 +7,8 @@
     margin-inline: auto;
     display: flex;
     flex-direction: column;
-    background-color: rgba(12, 35, 12, 0.9);
+    background: -webkit-linear-gradient(left, #85f6c7, #2ac425);
+    background: linear-gradient(to right, #128056, #0c3f3c);
     padding: 2rem;
     border-radius: .3rem;
     gap: 1rem;
@@ -93,4 +94,4 @@
 
 .Auth .redirect-paraph a {
     text-decoration: underline;
-    color: rgb(215, 192, 29);}
+    color: rgb(174, 246, 218);}

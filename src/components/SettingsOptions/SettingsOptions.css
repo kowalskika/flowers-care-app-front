@@ -2,7 +2,8 @@
     width: 100%;
     margin-top: .5rem;
     margin-inline: auto;
-    background: rgba(4, 14, 3, 0.82);
+    background: -webkit-linear-gradient(left, #85f6c7, #2ac425);
+    background: linear-gradient(to right, #128056, #0c3f3c);
     border-radius: .5rem;
     max-width: 660px;
     padding: 2rem;

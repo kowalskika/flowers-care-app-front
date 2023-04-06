@@ -40,7 +40,7 @@ export const FlowersTableRow = (props: Props) => {
         <WateringButton id={id} nextWateringAt={nextWateringAt} wateringInterval={wateringInterval} dateChange={dateChange} />
       </td>
 
-      <td>
+      <td className="FlowersTable__last-th">
         <InfoButton id={id as string} />
         <DeleteButton flower={{ id, name }} onFlowerChange={onFlowerChange} />
       </td>
