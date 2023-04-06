@@ -4,12 +4,14 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { AxiosError } from 'axios';
 
 import './OneFlower.css';
+import { SlTrash } from 'react-icons/sl';
 import { Spinner } from '../common/Spinner/Spinner';
 import { OneFlowerTable } from './OneFlowerTable';
 import { EditFlowerForm } from '../EditFlowerForm/EditFlowerForm';
 import { dateStringToFormDateInput } from '../../utils/dateStringToDateFormInput';
 import { useAuth } from '../../hooks/useAuth';
 import { useAxiosPrivate } from '../../hooks/useAxiosPrivate';
+import { UploadImage } from '../UploadImage/UploadImage/UploadImage';
 
 export const OneFlower = () => {
   const { auth } = useAuth();
@@ -30,6 +32,18 @@ export const OneFlower = () => {
 
   const [flowerInfo, setFlowerInfo] = useState<FlowerEntity | null>(null);
   const [flowerInfoToEditForm, setFlowerInfoToEditForm] = useState<FlowerEditForm>(flowerInfoForm);
+  const [photos, setPhotos] = useState<string[]>(['']);
+  const handleChildStateChange = (urls: string) => {
+    setPhotos(urls[0] ? urls : flowerInfo?.photosUrl[0] ? JSON.parse(flowerInfo.photosUrl as string) : []);
+  };
+
+  const deleteImg = async (key: string) => {
+    if (auth) {
+      const photoId = key.replace('https://res.cloudinary.com/dkcqqmbge/image/upload/', '').replace('/', '*');
+      const { data } = await axiosPrivate.delete(`upload/${flowerId}/${photoId}?user=${auth.id}`);
+      setPhotos(data);
+    }
+  };
 
   const refreshFlowerList = async () => {
     setFlowerInfo(null);
@@ -40,6 +54,7 @@ export const OneFlower = () => {
         const { data } = (await axiosPrivate.get(`flower/${flowerId}?user=${auth.id}`)) as FlowerEntityRes;
         setFlowerInfo(data);
         setFlowerInfoToEditForm(data);
+        setPhotos(data.photosUrl[0] ? JSON.parse(data.photosUrl as string) : []);
         setFlowerInfoToEditForm((prev) => {
           return (
             {
@@ -54,6 +69,7 @@ export const OneFlower = () => {
         });
       }
     } catch (err) {
+      console.log(err);
       const { response } = err as AxiosError;
       if (response !== undefined && response.status === 404) {
         navigate('/404');
@@ -65,7 +81,7 @@ export const OneFlower = () => {
 
   useEffect(() => {
     (async () => refreshFlowerList())();
-  }, [auth, setFlowerInfo, axiosPrivate]);
+  }, [auth, setFlowerInfo, axiosPrivate, setPhotos]);
 
   if (flowerInfo === null) return <Spinner />;
 
@@ -76,6 +92,14 @@ export const OneFlower = () => {
       <div className="OneFlower__EditFlower-container">
         <EditFlowerForm flower={flowerInfoToEditForm as FlowerEntity} refreshFlowerList={refreshFlowerList} />
       </div>
+      {photos[0] && (
+        <ul>
+          {photos.map((el: string) => {
+            return <li key={el}><div className="OneFlower__img"><button type="submit" onClick={() => deleteImg(el)}><SlTrash />Usuń</button><img src={el} alt="zdjęcie" /></div></li>;
+          })}
+        </ul>
+      )}
+      <UploadImage flowerId={flowerId as string} onStateChange={handleChildStateChange} />
     </>
   );
 };

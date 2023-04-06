@@ -1,0 +1,31 @@
+.UploadImage__box {
+    width: 25%;
+    min-width: 315px;
+    margin: 20px auto 20px ;
+}
+
+
+.hidden {
+    display: none;
+}
+.UploadImage__box li {
+    list-style: none;
+}
+
+.UploadImage__h2 {
+    text-align: center;
+}
+
+.UploadImage__upload-box {
+    border-radius: 1rem;
+    background: -webkit-linear-gradient(left, #85f6c7, #2ac425);
+    background: linear-gradient(to right, #128056, #0c3f3c);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    transition: all 0.5s ease 0s;
+}
+
+.UploadImage__upload-box label:hover {
+    color: #85f6c7;
+}
