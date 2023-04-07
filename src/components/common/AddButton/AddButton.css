@@ -18,3 +18,7 @@
     color: #000000;
     background-color: #b3ea81;
 }
+.AddButton__a[disabled] {
+    background-color: #626262;
+    cursor: not-allowed;
+}

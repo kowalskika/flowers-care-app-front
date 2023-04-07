@@ -10,7 +10,6 @@ export function OneFlowerTableRow({ flower }: Props) {
   const {
     id, name, fertilizedAt, info, replantedAt, species, wateredAt, wateringInterval, nextWateringAt,
   } = flower;
-
   const [color, setColor] = useState('black');
   const [wateredAtNewDate, setWateredAtNewDate] = useState(wateredAt);
 

@@ -1,10 +1,11 @@
 import React, { FormEvent, useState, useEffect } from 'react';
-import { SlRocket, SlPencil } from 'react-icons/sl';
+import { SlRocket, SlPencil, SlClose } from 'react-icons/sl';
 import { FlowerEditForm, FlowerEntity } from 'types';
 import { Spinner } from '../common/Spinner/Spinner';
 import { useAxiosPrivate } from '../../hooks/useAxiosPrivate';
 import { useAuth } from '../../hooks/useAuth';
 import './EditFlowerForm.css';
+import { useFlowerValidation } from '../../hooks/useFormValidation';
 
 enum FlowerUpdateForm {
   name = 'name',
@@ -32,7 +33,9 @@ export const EditFlowerForm = ({ flower, refreshFlowerList }: EditFlowerFormProp
     fertilizedAt: flower.fertilizedAt,
     wateringInterval: flower.wateringInterval,
     nextWateringAt: flower.nextWateringAt,
+    photosUrl: flower.photosUrl,
   });
+  const { nameError } = useFlowerValidation({ name: form.name });
 
   const axiosPrivate = useAxiosPrivate();
   const { auth } = useAuth();
@@ -43,12 +46,13 @@ export const EditFlowerForm = ({ flower, refreshFlowerList }: EditFlowerFormProp
     setForm({
       name: flower.name,
       wateredAt: flower.wateredAt,
-      info: flower.info,
-      species: flower.species,
-      replantedAt: flower.replantedAt,
-      fertilizedAt: flower.fertilizedAt,
+      info: flower.info ? flower.info : '',
+      species: flower.species ? flower.species : '',
+      replantedAt: flower.replantedAt ? flower.replantedAt : '',
+      fertilizedAt: flower.fertilizedAt ? flower.fertilizedAt : '',
       wateringInterval: flower.wateringInterval,
       nextWateringAt: flower.nextWateringAt,
+      photosUrl: flower.photosUrl ? flower.photosUrl : '[]',
     });
   }, [flower]);
 
@@ -64,6 +68,9 @@ export const EditFlowerForm = ({ flower, refreshFlowerList }: EditFlowerFormProp
 
   const sendForm = async (e: FormEvent) => {
     e.preventDefault();
+    if (nameError) {
+      return;
+    }
     setLoading(true);
 
     try {
@@ -99,6 +106,12 @@ export const EditFlowerForm = ({ flower, refreshFlowerList }: EditFlowerFormProp
                     value={form.name}
                     onChange={(e) => updateForm(FlowerUpdateForm.name, e.target.value)}
                   />
+                  { (nameError || !form.name) && (
+                    <>
+                      <span><SlClose /></span>
+                      <p>Nazwa powinna zawierać od 3 do 100 znaków.</p>
+                    </>
+                  ) }
                 </label>
               </th>
             </tr>
@@ -118,11 +131,18 @@ export const EditFlowerForm = ({ flower, refreshFlowerList }: EditFlowerFormProp
               <th>
                 <label>Data ostatniego podlania: <br />
                   <input
+                    required
                     max={todayInputValue}
                     type="date"
                     value={form.wateredAt}
                     onChange={(e) => updateForm(FlowerUpdateForm.wateredAt, e.target.value)}
                   />
+                  { (!form.wateredAt) && (
+                    <>
+                      <span><SlClose /></span>
+                      <p>Proszę uzupełnić datę ostatniego podalnia.</p>
+                    </>
+                  ) }
                 </label>
               </th>
             </tr>
@@ -176,11 +196,14 @@ export const EditFlowerForm = ({ flower, refreshFlowerList }: EditFlowerFormProp
             <tr>
               <th>
                 <div className="EditFlowerForm__container">
-                  <button className="EditButton__a" type="submit">
+                  <button
+                    className="EditButton__a"
+                    type="submit"
+                    disabled={nameError || !form.name || !form.wateredAt}
+                  >
                     <SlRocket />Zapisz
                   </button>
                 </div>
-
               </th>
             </tr>
           </tbody>
@@ -188,5 +211,13 @@ export const EditFlowerForm = ({ flower, refreshFlowerList }: EditFlowerFormProp
       </form>
     );
   }
-  return <button className="EditButton__a" type="submit" onClick={() => setIsUpdated(false)}><SlPencil />Edytuj</button>;
+  return (
+    <button
+      id="button1"
+      className="EditButton__a"
+      type="submit"
+      onClick={() => setIsUpdated(false)}
+    ><SlPencil />Edytuj
+    </button>
+  );
 };

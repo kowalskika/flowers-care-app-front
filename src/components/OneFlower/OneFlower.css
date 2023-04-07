@@ -2,3 +2,37 @@
     display: flex;
     justify-content: center;
 }
+.OneFlower__img {
+    width: 400px;
+    margin: 5px auto;
+}
+.OneFlower__btn {
+    top: 40px;
+    left: 260px;
+    position: relative;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    z-index: 1;
+    padding: .5rem 1rem;
+    border-radius: .3rem;
+    background-color: #58885f;
+    overflow: hidden;
+    font-size: 1rem;
+    transition: all 0.5s ease 0s;
+    color: white;
+    width: 140px;
+}
+
+.OneFlower__btn:hover{
+    color: #000000;
+    background-color: #b3ea81;
+    cursor: pointer;
+}
+
+.OneFlower__btn--confirm {
+    color: #ffffff;
+    background-color: #fc4a4a;
+    transition: all 0.5s ease 0s;
+}

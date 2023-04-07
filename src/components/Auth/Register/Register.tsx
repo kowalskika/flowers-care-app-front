@@ -11,6 +11,7 @@ export const Register = () => {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [allowMail, setAllowMail] = useState('');
   const [passwordRepetition, setPasswordRepetition] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
@@ -38,15 +39,20 @@ export const Register = () => {
         return;
       }
       setLoading(true);
-      await axios.post('user', { email, password });
+      await axios.post('user', { email, password, allowMail });
       setError('');
       setPassword('');
       setPasswordRepetition('');
       setSuccess(true);
     } catch (err: any) {
-      const message = 'Wystąpił nieoczekiwany błąd. Spróbuj ponownie później.';
+      if (err.response.status === 409) {
+        const message = 'Podany adres email jest już zajęty, jeśli masz już konto zaloguj się.';
+        setError(message);
+      } else {
+        const message = 'Wystąpił nieoczekiwany błąd. Spróbuj ponownie później.';
+        setError(message);
+      }
       setSuccess(false);
-      setError(message);
     } finally {
       setLoading(false);
     }
@@ -100,6 +106,16 @@ export const Register = () => {
             <p>Podane hasła nie są jednakowe.</p>
           </>
         ) }
+      </label>
+      <label> Zaznacz aby otrzymywać powiadomienia email, jeśli zapomnisz podlać swoje kwiaty:
+        <input
+          className="Register__allowMail-checkbox"
+          type="checkbox"
+          name="AllowMail"
+          value="true"
+          onChange={(e) => setAllowMail(e.target.value)}
+        />
+
       </label>
 
       <button
