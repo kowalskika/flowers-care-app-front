@@ -3,11 +3,13 @@ import { SlPlus, SlRocket } from 'react-icons/sl';
 
 import './AddButton.css';
 
-export const AddButton = (props: { confirm: boolean }) => {
-  const { confirm } = props;
+export const AddButton = (props: { confirm: boolean, nameError?: boolean, name?: string, wateredAt?: string }) => {
+  const {
+    confirm, nameError, name, wateredAt,
+  } = props;
   if (confirm) {
     return (
-      <button className="AddButton__a" type="submit">
+      <button disabled={!name || !wateredAt || nameError} className="AddButton__a" type="submit">
         <SlRocket />Zapisz
       </button>
     );
