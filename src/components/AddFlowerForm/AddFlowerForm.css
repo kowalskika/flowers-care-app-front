@@ -8,6 +8,24 @@
     height: 2rem;
 }
 
+.AddFlowerForm__tbody label {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.AddFlowerForm__tbody label p {
+    padding: .5rem;
+    font-size: .8rem;
+    color: rgb(215, 192, 29);
+}
+
+.AddFlowerForm__tbody span {
+    position: absolute;
+    top: 1.8rem;
+    right: .5rem;
+    color: #000000;
+    font-size: 1.2rem;
+}
 
 .AddFlowerForm__tbody textarea {
     width: 100%;

@@ -1,11 +1,13 @@
 import React, { FormEvent, useState } from 'react';
 import { CreateFlowerReq, FlowerUpdateForm } from 'types';
+import { SlClose } from 'react-icons/sl';
 import { useNavigate } from 'react-router-dom';
 import { Spinner } from '../common/Spinner/Spinner';
 import './AddFlowerForm.css';
 import { useAxiosPrivate } from '../../hooks/useAxiosPrivate';
 import { useAuth } from '../../hooks/useAuth';
 import { AddButton } from '../common/AddButton/AddButton';
+import { useFlowerValidation } from '../../hooks/useFormValidation';
 
 export const AddFlowerForm = () => {
   const [form, setForm] = useState<CreateFlowerReq>({
@@ -13,7 +15,6 @@ export const AddFlowerForm = () => {
     wateredAt: '',
     info: '',
     species: '',
-    isMailSent: false,
     replantedAt: '',
     fertilizedAt: '',
     wateringInterval: 1,
@@ -25,6 +26,9 @@ export const AddFlowerForm = () => {
   const navigate = useNavigate();
   const { auth } = useAuth();
   const todayInputValue = new Date().toISOString().split('T')[0];
+
+  const { nameError } = useFlowerValidation({ name: form.name });
+
   const updateForm = (key: FlowerUpdateForm, value: string) => {
     setForm((prevForm) => ({
       ...prevForm,
@@ -34,6 +38,9 @@ export const AddFlowerForm = () => {
 
   const sendForm = async (e: FormEvent) => {
     e.preventDefault();
+    if (nameError) {
+      return;
+    }
     setLoading(true);
     setFlowerId(null);
     try {
@@ -64,6 +71,12 @@ export const AddFlowerForm = () => {
                   value={form.name}
                   onChange={(e) => updateForm(FlowerUpdateForm.name, e.target.value)}
                 />
+                { (nameError || !form.name) && (
+                  <>
+                    <span><SlClose /></span>
+                    <p>Nazwa powinna zawierać od 3 do 100 znaków.</p>
+                  </>
+                ) }
               </label>
             </th>
           </tr>
@@ -89,6 +102,12 @@ export const AddFlowerForm = () => {
                   value={form.wateredAt as string}
                   onChange={(e) => updateForm(FlowerUpdateForm.wateredAt, e.target.value)}
                 />
+                { (!form.wateredAt) && (
+                  <>
+                    <span><SlClose /></span>
+                    <p>Proszę uzupełnić datę ostatniego podalnia.</p>
+                  </>
+                ) }
               </label>
             </th>
           </tr>
@@ -142,7 +161,7 @@ export const AddFlowerForm = () => {
           <tr>
             <th>
               <div className="EditFlowerForm__container">
-                <AddButton confirm />
+                <AddButton nameError={nameError} name={form.name} wateredAt={form.wateredAt} confirm />
               </div>
             </th>
           </tr>
