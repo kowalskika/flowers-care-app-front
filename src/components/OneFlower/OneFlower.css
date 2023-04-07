@@ -6,9 +6,9 @@
     width: 400px;
     margin: 5px auto;
 }
-.OneFlower__img button {
+.OneFlower__btn {
     top: 40px;
-    left: 300px;
+    left: 260px;
     position: relative;
     border: none;
     display: flex;
@@ -22,11 +22,17 @@
     font-size: 1rem;
     transition: all 0.5s ease 0s;
     color: white;
-    width: 100px;
+    width: 140px;
 }
 
-.OneFlower__img button:hover{
+.OneFlower__btn:hover{
     color: #000000;
     background-color: #b3ea81;
     cursor: pointer;
+}
+
+.OneFlower__btn--confirm {
+    color: #ffffff;
+    background-color: #fc4a4a;
+    transition: all 0.5s ease 0s;
 }

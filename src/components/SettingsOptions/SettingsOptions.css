@@ -43,8 +43,7 @@
 }
 
 .SettingsOptions__link--delete {
-    background-color: #eac27b;
-    color: #ff0000;
-    font-weight: bold;
+    color: #ffffff;
+    background-color: #fc4a4a;
     transition: all 0.5s ease 0s;
 }

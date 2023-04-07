@@ -19,3 +19,8 @@
     color: #000000;
     background-color: #b3ea81;
 }
+
+.DeleteButton__btn--confirm {
+    color: #ffffff;
+    background-color: #fc4a4a;
+}

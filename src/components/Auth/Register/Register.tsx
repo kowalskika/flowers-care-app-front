@@ -45,9 +45,14 @@ export const Register = () => {
       setPasswordRepetition('');
       setSuccess(true);
     } catch (err: any) {
-      const message = 'Wystąpił nieoczekiwany błąd. Spróbuj ponownie później.';
+      if (err.response.status === 409) {
+        const message = 'Podany adres email jest już zajęty, jeśli masz już konto zaloguj się.';
+        setError(message);
+      } else {
+        const message = 'Wystąpił nieoczekiwany błąd. Spróbuj ponownie później.';
+        setError(message);
+      }
       setSuccess(false);
-      setError(message);
     } finally {
       setLoading(false);
     }

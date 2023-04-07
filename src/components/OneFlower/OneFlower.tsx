@@ -18,6 +18,7 @@ export const OneFlower = () => {
   const { flowerId } = useParams();
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
+  const [confirm, setConfirm] = useState(false);
 
   const flowerInfoForm = {
     name: '',
@@ -39,10 +40,19 @@ export const OneFlower = () => {
   };
 
   const deleteImg = async (key: string) => {
-    if (auth) {
-      const photoId = key.replace('https://res.cloudinary.com/dkcqqmbge/image/upload/', '').replace('/', '*');
-      const { data } = await axiosPrivate.delete(`upload/${flowerId}/${photoId}?user=${auth.id}`);
-      setPhotos(data);
+    try {
+      if (!confirm) {
+        setConfirm(true);
+        return;
+      }
+      if (auth) {
+        const photoId = key.replace('https://res.cloudinary.com/dkcqqmbge/image/upload/', '').replace('/', '*');
+        const { data } = await axiosPrivate.delete(`upload/${flowerId}/${photoId}?user=${auth.id}`);
+        setPhotos(data);
+        setConfirm(false);
+      }
+    } catch (err) {
+      navigate('/error');
     }
   };
 
@@ -96,7 +106,17 @@ export const OneFlower = () => {
       {photos[0] && (
         <ul>
           {photos.map((el: string) => {
-            return <li key={el}><div className="OneFlower__img"><button type="submit" onClick={() => deleteImg(el)}><SlTrash />Usuń</button><img src={el} alt="zdjęcie" /></div></li>;
+            return (
+              <li key={el}>
+                <div className="OneFlower__img">
+                  <button className={`OneFlower__btn ${confirm ? 'OneFlower__btn--confirm' : ''}`} type="submit" onClick={() => deleteImg(el)}>
+                    { !confirm
+                      ? <><SlTrash />Usuń</>
+                      : <><SlTrash />Potwierdź</>}
+                  </button><img src={el} alt="zdjęcie" />
+                </div>
+              </li>
+            );
           })}
         </ul>
       )}
