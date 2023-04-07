@@ -11,6 +11,7 @@ import { RequireAuth } from '../RequireAuth/RequireAuth';
 import { SettingsView } from '../../views/SettingsView/SettingsView';
 import { EmailEditor } from '../EmailEditor/EmailEditor';
 import { PasswordEditor } from '../PasswordEditor/PasswordEditor';
+import { AllowMailEditor } from '../AllowMailEditor/AllowMailEditor';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/" element={<RequireAuth />}>
           <Route path="settings" element={<SettingsView />}>
             <Route path="email" element={<EmailEditor />} />
+            <Route path="allowMail" element={<AllowMailEditor />} />
             <Route path="password" element={<PasswordEditor />} />
           </Route>
           <Route path="/" element={<Navigate to="/flower" />} />
