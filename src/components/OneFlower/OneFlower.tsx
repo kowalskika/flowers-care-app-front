@@ -28,6 +28,7 @@ export const OneFlower = () => {
     fertilizedAt: '',
     wateringInterval: 0,
     nextWateringAt: '',
+    photosUrl: '[]',
   };
 
   const [flowerInfo, setFlowerInfo] = useState<FlowerEntity | null>(null);
