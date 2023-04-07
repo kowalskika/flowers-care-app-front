@@ -47,6 +47,12 @@ export const SettingsOptions = () => {
           <SlEnvolopeLetter /> Zmień adres email
         </NavLink>
         <NavLink
+          to="allowMail"
+          className="SettingsOptions__link"
+        >
+          <SlEnvolopeLetter /> Powiadomienia mail
+        </NavLink>
+        <NavLink
           to="password"
           className="SettingsOptions__link"
         >
@@ -62,6 +68,7 @@ export const SettingsOptions = () => {
             ? <><SlTrash />Usuń konto</>
             : <><SlTrash />Potwierdź</>}
         </Link>
+
         <Link
           to="/logout"
           className="SettingsOptions__link"
