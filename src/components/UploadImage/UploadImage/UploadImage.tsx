@@ -31,7 +31,7 @@ export const UploadImage = (props: { flowerId: string, onStateChange(urls: strin
     try {
       setUploadResponse('');
       if (auth) {
-        const res = await axiosPrivate.post(`http://localhost:3001/upload/${flowerId}?user=${auth.id}`, { image: base64 });
+        const res = await axiosPrivate.post(`upload/${flowerId}?user=${auth.id}`, { image: base64 });
         onStateChange(res.data);
         setUploadResponse('Zdjęcie zostało dodane.');
         setLoading(false);
@@ -47,13 +47,14 @@ export const UploadImage = (props: { flowerId: string, onStateChange(urls: strin
     try {
       setUploadResponse('');
       if (auth) {
-        const res = await axiosPrivate.post(`http://localhost:3001/upload/many/${flowerId}?user=${auth.id}`, { base64s });
+        const res = await axiosPrivate.post(`upload/many/${flowerId}?user=${auth.id}`, { base64s });
         onStateChange(res.data);
         setUploadResponse('Zdjęcia zostały dodane.');
         setLoading(false);
       }
     } catch (err) {
       setUploadResponse('Wystąpił błąd. Spróbuj ponownie.');
+      setLoading(false);
     }
   }
 

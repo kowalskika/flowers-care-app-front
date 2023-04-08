@@ -4,6 +4,7 @@ import './ErrorView.css';
 import { GoBackButton } from '../../components/common/GoBackButton/GoBackButton';
 
 export const ErrorView = () => {
+  localStorage.removeItem('user');
   return (
     <article className="ErrorView">
       <p className="ErrorView__top-paraph">Ups!</p>
