@@ -27,7 +27,7 @@ export const AddFlowerForm = () => {
   const { auth } = useAuth();
   const todayInputValue = new Date().toISOString().split('T')[0];
 
-  const { nameError } = useFlowerValidation({ name: form.name });
+  const nameError = useFlowerValidation(form.name);
 
   const updateForm = (key: FlowerUpdateForm, value: string) => {
     setForm((prevForm) => ({

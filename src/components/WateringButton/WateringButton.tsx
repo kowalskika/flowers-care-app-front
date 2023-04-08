@@ -3,8 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { AxiosError } from 'axios';
 import { SlDrop } from 'react-icons/sl';
 
-import { checkWateringDate } from '../../utils/checkWateringDate';
-import { addDays } from '../../utils/addDays';
+import { addDays, checkWateringDateAndSetFontColor } from '../../utils/dateStringFunctions';
 import { useAxiosPrivate } from '../../hooks/useAxiosPrivate';
 import { useAuth } from '../../hooks/useAuth';
 import './WateringButton.css';
@@ -21,18 +20,18 @@ export const WateringButton = (props: Props) => {
   const {
     nextWateringAt, id, wateringInterval, dateChange, changeColor,
   } = props;
+
   const [color, setColor] = useState('white');
   const [nextWateringDate, setNextWateringDate] = useState(nextWateringAt);
+
   const axiosPrivate = useAxiosPrivate();
   const { auth } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    const fontColor = checkWateringDate(nextWateringAt as string);
+    const fontColor = checkWateringDateAndSetFontColor(nextWateringAt as string);
     setColor(fontColor);
-    if (changeColor) {
-      changeColor(fontColor);
-    }
+    if (changeColor) { changeColor(fontColor); }
   }, [nextWateringAt]);
 
   const updatedWateringDate = async (e: FormEvent) => {
@@ -42,9 +41,7 @@ export const WateringButton = (props: Props) => {
     setNextWateringDate(
       addDays(new Date(), wateringInterval).toLocaleDateString('fr-CH'),
     );
-    if (changeColor) {
-      changeColor('white');
-    }
+    if (changeColor) { changeColor('white'); }
 
     try {
       await axiosPrivate.patch(
@@ -62,10 +59,13 @@ export const WateringButton = (props: Props) => {
   return (
     <>
       <p style={{ color }}>{nextWateringDate}</p>
-      <button className="WateringButton__button" type="submit" onClick={updatedWateringDate}>
+      <button
+        className="WateringButton__button"
+        type="submit"
+        onClick={updatedWateringDate}
+      >
         <SlDrop />Podlej
       </button>
     </>
-
   );
 };

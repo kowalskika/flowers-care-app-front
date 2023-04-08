@@ -8,17 +8,16 @@ import { SlTrash } from 'react-icons/sl';
 import { Spinner } from '../common/Spinner/Spinner';
 import { OneFlowerTable } from './OneFlowerTable';
 import { EditFlowerForm } from '../EditFlowerForm/EditFlowerForm';
-import { dateStringToFormDateInput } from '../../utils/dateStringToDateFormInput';
 import { useAuth } from '../../hooks/useAuth';
 import { useAxiosPrivate } from '../../hooks/useAxiosPrivate';
 import { UploadImage } from '../UploadImage/UploadImage/UploadImage';
+import { dateStringToFormDateInput } from '../../utils/dateStringFunctions';
 
 export const OneFlower = () => {
   const { auth } = useAuth();
   const { flowerId } = useParams();
   const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
-  const [confirm, setConfirm] = useState(false);
 
   const flowerInfoForm = {
     name: '',
@@ -32,14 +31,16 @@ export const OneFlower = () => {
     photosUrl: '[]',
   };
 
+  const [confirm, setConfirm] = useState(false);
   const [flowerInfo, setFlowerInfo] = useState<FlowerEntity | null>(null);
   const [flowerInfoToEditForm, setFlowerInfoToEditForm] = useState<FlowerEditForm>(flowerInfoForm);
   const [photos, setPhotos] = useState<string[]>(['']);
-  const handleChildStateChange = (urls: string) => {
+
+  const handleChildStateChange = (urls: string): void => {
     setPhotos(urls[0] ? urls : flowerInfo?.photosUrl[0] ? JSON.parse(flowerInfo.photosUrl as string) : []);
   };
 
-  const deleteImg = async (key: string) => {
+  const deleteImg = async (key: string): Promise<void> => {
     try {
       if (!confirm) {
         setConfirm(true);
@@ -80,9 +81,8 @@ export const OneFlower = () => {
         });
       }
     } catch (err) {
-      console.log(err);
       const { response } = err as AxiosError;
-      if (response !== undefined && response.status === 404) {
+      if (response?.status === 404) {
         navigate('/404');
       } else {
         navigate('/error');
@@ -100,7 +100,7 @@ export const OneFlower = () => {
     <>
       <OneFlowerTable flowerInfo={flowerInfo} />
       <br />
-      <div className="OneFlower__EditFlower-container">
+      <div className="OneFlower__EditFlower__container">
         <EditFlowerForm flower={flowerInfoToEditForm as FlowerEntity} refreshFlowerList={refreshFlowerList} />
       </div>
       {photos[0] && (

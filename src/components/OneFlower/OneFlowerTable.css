@@ -1,15 +1,28 @@
-h1 {
+.OneFlowerTable__h1 {
     text-shadow: 1px 1px rgb(234, 234, 208);
     text-align: center;
     padding: 20px 0;
     font-size: 1.5rem;
 }
-.one-flower-table {
+
+.OneFlowerTable__table {
     text-align: left;
     width: 60vw;
     max-width: 1000px;
     margin: 0 auto 20px ;
     background-color: black;
     font-size: 18px;
+}
+
+.OneFlowerTable__table td, th{
+    line-height: 1.4rem;
+}
+
+.OneFlowerTable__table td {
+    border-right: none;
+}
+
+.OneFlowerTable__table th {
+    width: 320px;
 }
 

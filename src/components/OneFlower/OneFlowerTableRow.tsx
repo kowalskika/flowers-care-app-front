@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
-import './OneFlowerTableRow.css';
+
 import { FlowerEntity } from 'types';
 import { WateringButton } from '../WateringButton/WateringButton';
 
 interface Props {
   flower: FlowerEntity,
 }
+
 export function OneFlowerTableRow({ flower }: Props) {
   const {
     id, name, fertilizedAt, info, replantedAt, species, wateredAt, wateringInterval, nextWateringAt,
   } = flower;
+
   const [color, setColor] = useState('black');
   const [wateredAtNewDate, setWateredAtNewDate] = useState(wateredAt);
 
@@ -29,14 +31,12 @@ export function OneFlowerTableRow({ flower }: Props) {
         <th>Nazwa:</th>
         <td>{name} </td>
       </tr>
-
       {species && (
       <tr>
         <th>Gatunek:</th>
         <td>{species} </td>
       </tr>
       )}
-
       <tr>
         <th>Data ostatniego podlania:</th>
         <td>{wateredAtNewDate} </td>
@@ -47,7 +47,15 @@ export function OneFlowerTableRow({ flower }: Props) {
       </tr>
       <tr>
         <th><p style={{ color }}>Data następnego podlewania:</p></th>
-        <td><WateringButton id={id} wateringInterval={wateringInterval as number} nextWateringAt={nextWateringAt} dateChange={dateChange} changeColor={changeColor} /></td>
+        <td>
+          <WateringButton
+            id={id}
+            wateringInterval={wateringInterval as number}
+            nextWateringAt={nextWateringAt}
+            dateChange={dateChange}
+            changeColor={changeColor}
+          />
+        </td>
       </tr>
       {replantedAt && (
       <tr>

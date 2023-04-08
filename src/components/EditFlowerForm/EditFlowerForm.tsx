@@ -35,7 +35,7 @@ export const EditFlowerForm = ({ flower, refreshFlowerList }: EditFlowerFormProp
     nextWateringAt: flower.nextWateringAt,
     photosUrl: flower.photosUrl,
   });
-  const { nameError } = useFlowerValidation({ name: form.name });
+  const nameError = useFlowerValidation(form.name);
 
   const axiosPrivate = useAxiosPrivate();
   const { auth } = useAuth();

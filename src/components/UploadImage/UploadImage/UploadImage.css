@@ -1,13 +1,13 @@
+.UploadInput__hidden {
+    display: none;
+}
+
 .UploadImage__box {
     width: 25%;
     min-width: 315px;
     margin: 20px auto 20px ;
 }
 
-
-.hidden {
-    display: none;
-}
 .UploadImage__box li {
     list-style: none;
 }

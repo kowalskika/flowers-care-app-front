@@ -2,9 +2,7 @@ import { useEffect, useState } from 'react';
 
 const NAME_REGEX = /^.{3,100}$/;
 
-export const useFlowerValidation = ({
-  name,
-}: { name?: string }) => {
+export const useFlowerValidation = (name?: string) => {
   const [nameError, setNameError] = useState(false);
 
   useEffect(() => {
@@ -15,7 +13,5 @@ export const useFlowerValidation = ({
     }
   }, [name]);
 
-  return {
-    nameError,
-  };
+  return nameError;
 };

@@ -1,10 +1,10 @@
 import { axios } from '../api/axios';
 import { useAuth } from './useAuth';
 
-export const useRefresh = () => {
+export const useRefresh = (): () => Promise<string | null> => {
   const { setAuth } = useAuth();
 
-  return async function () {
+  return async (): Promise<string | null> => {
     try {
       const { data } = await axios.patch('session', {}, { withCredentials: true }) as { data: string };
       setAuth((prev) => {
@@ -12,7 +12,7 @@ export const useRefresh = () => {
         return { ...prev, accessToken: data };
       });
       return data;
-    } catch (e) {
+    } catch (err) {
       await axios.delete('sessions', { withCredentials: true });
       localStorage.removeItem('user');
       setAuth(null);
