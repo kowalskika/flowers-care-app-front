@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 
 const ISO_MAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,63}$/;
-
 const PASSWORD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[?!@#$%]).{8,100}$/;
 
 export const useUserValidation = ({

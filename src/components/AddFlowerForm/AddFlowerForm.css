@@ -1,5 +1,25 @@
+.AddFlowerForm__table{
+    border-radius: 1rem;
+    text-align: left;
+    width: 60vw;
+    max-width: 1000px;
+    margin: 0 auto 20px ;
+    font-size: 18px;
+    background: -webkit-linear-gradient(left, #85f6c7, #2ac425);
+    background: linear-gradient(to right, #128056, #0c3f3c);
+    color: white;
+}
+
+.AddFlowerForm__h1{
+    text-shadow: 1px 1px rgb(234, 234, 208);
+    text-align: center;
+    padding: 20px 0;
+    font-size: 1.5rem;
+}
+
 .AddFlowerForm__tbody input{
     width: 25%;
+    min-width: 180px;
     font-size: 0.95rem;
 }
 
@@ -27,6 +47,10 @@
     font-size: 1.2rem;
 }
 
+.AddFlowerForm__tbody .AddFlowerForm_date_span {
+    color: white;
+}
+
 .AddFlowerForm__tbody textarea {
     width: 100%;
     height: 10rem;
@@ -37,6 +61,7 @@
     display: flex;
     justify-content: center;
 }
+
 .AddFlowerForm__tbody th {
     border-right: none;
 }

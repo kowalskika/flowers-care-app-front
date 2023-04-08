@@ -2,6 +2,7 @@ import React, {
   FormEvent, useEffect, useRef, useState,
 } from 'react';
 import { SlClose } from 'react-icons/sl';
+
 import { SettingsMode } from '../ChangeSettingsMode/SettingsMode';
 import { useAuth } from '../../hooks/useAuth';
 import { useUserValidation } from '../../hooks/useRegisterValidation';
@@ -15,6 +16,7 @@ export const PasswordEditor = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+
   const { auth } = useAuth();
 
   const {
@@ -103,7 +105,6 @@ export const PasswordEditor = () => {
           Zapisz
           { loading && <Spinner /> }
         </button>
-
         { error && <p className="error">{ error }</p> }
         { success && <p className="success">Zmiany zostały zapisane.</p> }
       </form>

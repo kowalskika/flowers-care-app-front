@@ -1,4 +1,4 @@
-.nav-bar__header {
+.NavBar__header {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -7,22 +7,23 @@
     min-width: 670px;
 }
 
-.nav-bar__header a, .nav-bar__header p  {
+.NavBar__header a, .NavBar__header p  {
     font-weight: 500;
     color: #a2c285;
     text-decoration: none;
 }
-.nav-bar__header p {
+
+.NavBar__header p {
     font-size: 1.2rem;
 }
 
-.nav-bar__links li{
+.NavBar__links li{
     list-style: none;
     display: inline-block;
     padding-left: 10px;
 }
 
-.nav-bar__links li a, .nav-bar__header a {
+.NavBar__links li a, .NavBar__header a {
     position: relative;
     display: flex;
     align-items: center;
@@ -37,7 +38,7 @@
     color: white;
 }
 
-.nav-bar__links li a:hover, .nav-bar__header a:hover{
+.NavBar__links li a:hover, .NavBar__header a:hover{
     color: #000000;
     background-color: #b3ea81;
 }

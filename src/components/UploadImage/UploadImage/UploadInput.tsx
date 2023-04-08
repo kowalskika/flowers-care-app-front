@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { ChangeEvent } from 'react';
 
-export const UploadInput = (props: { uploadImage(event: any): Promise<void> }) => {
+export const UploadInput = (props: { uploadImage(event: ChangeEvent<HTMLInputElement>): Promise<void> }) => {
   const { uploadImage } = props;
   return (
     <div>
@@ -14,7 +14,7 @@ export const UploadInput = (props: { uploadImage(event: any): Promise<void> }) =
           onChange={uploadImage}
           id="dropzone-file"
           type="file"
-          className="hidden"
+          className="UploadInput__hidden"
           multiple
         />
       </label>

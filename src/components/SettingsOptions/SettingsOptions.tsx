@@ -1,8 +1,9 @@
 import React, { MouseEvent, useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import {
   SlEnvolopeLetter, SlSettings, SlTrash, SlLogout, SlArrowLeftCircle,
 } from 'react-icons/sl';
+
 import { useAuth } from '../../hooks/useAuth';
 import { useAxiosPrivate } from '../../hooks/useAxiosPrivate';
 
@@ -10,7 +11,9 @@ import './SettingsOptions.css';
 
 export const SettingsOptions = () => {
   const [confirm, setConfirm] = useState(false);
+
   const { setAuth, auth } = useAuth();
+  const navigate = useNavigate();
   const axiosPrivate = useAxiosPrivate();
 
   const handleLogout = async (e: MouseEvent<HTMLAnchorElement>) => {
@@ -20,7 +23,7 @@ export const SettingsOptions = () => {
     await axiosPrivate.delete('sessions');
   };
 
-  const handleDelete = async (e: MouseEvent<HTMLAnchorElement>) => {
+  const handleDeleteAccount = async (e: MouseEvent<HTMLAnchorElement>) => {
     try {
       e.preventDefault();
       if (!confirm) {
@@ -32,7 +35,7 @@ export const SettingsOptions = () => {
       localStorage.removeItem('user');
       setAuth(null);
     } catch (err) {
-      console.log(err);
+      navigate('/error');
     }
   };
 
@@ -62,7 +65,7 @@ export const SettingsOptions = () => {
         <Link
           to="/delete-account"
           className={`SettingsOptions__link ${confirm ? 'SettingsOptions__link--delete' : ''}`}
-          onClick={handleDelete}
+          onClick={handleDeleteAccount}
         >
           { !confirm
             ? <><SlTrash />Usuń konto</>

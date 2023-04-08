@@ -1,15 +1,18 @@
 import React, { FormEvent, useState } from 'react';
-import { CreateFlowerReq, FlowerUpdateForm } from 'types';
-import { SlClose } from 'react-icons/sl';
 import { useNavigate } from 'react-router-dom';
+import { SlClose } from 'react-icons/sl';
+
+import { CreateFlowerReq, FlowerUpdateForm } from 'types';
 import { Spinner } from '../common/Spinner/Spinner';
-import './AddFlowerForm.css';
 import { useAxiosPrivate } from '../../hooks/useAxiosPrivate';
 import { useAuth } from '../../hooks/useAuth';
 import { AddButton } from '../common/AddButton/AddButton';
 import { useFlowerValidation } from '../../hooks/useFormValidation';
+import './AddFlowerForm.css';
 
 export const AddFlowerForm = () => {
+  const [loading, setLoading] = useState<boolean>(false);
+  const [flowerId, setFlowerId] = useState<string | null>(null);
   const [form, setForm] = useState<CreateFlowerReq>({
     name: '',
     wateredAt: '',
@@ -20,14 +23,12 @@ export const AddFlowerForm = () => {
     wateringInterval: 1,
     nextWateringAt: '',
   });
-  const [loading, setLoading] = useState<boolean>(false);
-  const [flowerId, setFlowerId] = useState<string | null>(null);
+
   const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate();
   const { auth } = useAuth();
   const todayInputValue = new Date().toISOString().split('T')[0];
-
-  const { nameError } = useFlowerValidation({ name: form.name });
+  const nameError = useFlowerValidation(form.name);
 
   const updateForm = (key: FlowerUpdateForm, value: string) => {
     setForm((prevForm) => ({
@@ -58,8 +59,8 @@ export const AddFlowerForm = () => {
   }
   return (
     <form onSubmit={sendForm}>
-      <h1>Dodaj nowy kwiat</h1>
-      <table className="one-flower-table">
+      <h1 className="AddFlowerForm__h1">Dodaj nowy kwiat</h1>
+      <table className="AddFlowerForm__table">
         <tbody className="AddFlowerForm__tbody">
           <tr>
             <th>
@@ -104,7 +105,7 @@ export const AddFlowerForm = () => {
                 />
                 { (!form.wateredAt) && (
                   <>
-                    <span><SlClose /></span>
+                    <span className="AddFlowerForm_date_span"><SlClose /></span>
                     <p>Proszę uzupełnić datę ostatniego podalnia.</p>
                   </>
                 ) }

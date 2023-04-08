@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { FlowerEntity } from 'types';
 import { FlowersTableRow } from './FlowersTableRow';
 
@@ -10,8 +11,8 @@ interface Props {
 export const FlowersTable = (props: Props) => {
   const { flowersList, onFlowerChange } = props;
   return (
-    <div className="FlowersTable-border-div">
-      <table>
+    <div className="FlowersListTable__div">
+      <table className="FlowersListTable__table">
         <thead>
           <tr>
             <th>Nazwa</th>
@@ -22,15 +23,13 @@ export const FlowersTable = (props: Props) => {
           </tr>
         </thead>
         <tbody>
-          {
-         flowersList.map((flower) => (
-           <FlowersTableRow
-             flower={flower}
-             key={flower.id}
-             onFlowerChange={onFlowerChange}
-           />
-         ))
-       }
+          {flowersList.map((flower) => (
+            <FlowersTableRow
+              flower={flower}
+              key={flower.id}
+              onFlowerChange={onFlowerChange}
+            />
+          ))}
         </tbody>
       </table>
     </div>

@@ -1,8 +1,9 @@
 import React, {
   FormEvent, useEffect, useRef, useState,
 } from 'react';
-import { IoCloseCircleOutline } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
+import { IoCloseCircleOutline } from 'react-icons/io5';
+
 import { useUserValidation } from '../../../hooks/useRegisterValidation';
 import { axios } from '../../../api/axios';
 import { Spinner } from '../../common/Spinner/Spinner';
@@ -15,6 +16,7 @@ export const Register = () => {
   const [passwordRepetition, setPasswordRepetition] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
+
   const loginLinkRef = useRef<HTMLAnchorElement>(null!);
   const {
     emailError,
@@ -75,7 +77,6 @@ export const Register = () => {
           </>
         ) }
       </label>
-
       <label>Hasło:
         <input
           type="password"
@@ -92,7 +93,6 @@ export const Register = () => {
           </>
         ) }
       </label>
-
       <label>Powtórz hasło:
         <input
           type="password"
@@ -115,9 +115,7 @@ export const Register = () => {
           value="true"
           onChange={(e) => setAllowMail(e.target.value)}
         />
-
       </label>
-
       <button
         type="submit"
         disabled={!email || !password || !passwordRepetition || emailError || passwordError || passwordRepetitionError || !!error}
@@ -125,11 +123,9 @@ export const Register = () => {
         Zarejestruj
         { loading && <Spinner /> }
       </button>
-
       { error && <p className="error">{ error }</p> }
       { success && <p className="success">Konto zostało utworzone. Kliknij<Link ref={loginLinkRef} to="/login">tutaj</Link> by się zalogować.</p> }
       { !success && <p className="redirect-paraph">Jeśli masz już konto kliknij <Link to="/login">tutaj</Link> aby przejść do strony logowania.</p> }
-
     </form>
   );
 };

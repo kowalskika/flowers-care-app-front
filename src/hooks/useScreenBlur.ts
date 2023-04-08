@@ -1,7 +1,7 @@
 import { SyntheticEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export const useScreenBlur = (backTo = '/') => {
+export const useScreenBlur = (backTo = '/'): { (e: SyntheticEvent): void } => {
   const navigate = useNavigate();
 
   return (e: SyntheticEvent) => {

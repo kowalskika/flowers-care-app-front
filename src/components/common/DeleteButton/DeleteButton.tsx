@@ -1,8 +1,8 @@
 import React, { MouseEvent, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { SlTrash } from 'react-icons/sl';
 
 import './DeleteButton.css';
-import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../hooks/useAuth';
 import { useAxiosPrivate } from '../../../hooks/useAxiosPrivate';
 
@@ -29,17 +29,17 @@ export const DeleteButton = (props: Props) => {
       }
       if (auth) {
         const res = await axiosPrivate.delete(`flower/${props.flower.id}?user=${auth.id}`);
-        if ([400, 500].includes(res.status)) {
-          console.log(`Wystąpił błąd: ${res}.`);
+        if ([400, 404].includes(res.status)) {
+          navigate('/404');
         }
         setConfirm(false);
       }
     } catch (err) {
       navigate('/error');
     }
-
     props.onFlowerChange();
   };
+
   return (
     <button type="submit" className={`DeleteButton__btn ${confirm ? 'DeleteButton__btn--confirm' : ''}`} onClick={deleteFlower}>
       { !confirm

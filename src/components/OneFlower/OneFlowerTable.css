@@ -1,15 +1,46 @@
-h1 {
+.OneFlowerTable__h1 {
     text-shadow: 1px 1px rgb(234, 234, 208);
     text-align: center;
     padding: 20px 0;
     font-size: 1.5rem;
 }
-.one-flower-table {
+
+.OneFlowerTable__table {
+    border-radius: 1rem;
     text-align: left;
     width: 60vw;
     max-width: 1000px;
     margin: 0 auto 20px ;
-    background-color: black;
     font-size: 18px;
+    background: -webkit-linear-gradient(left, #85f6c7, #2ac425);
+    background: linear-gradient(to right, #128056, #0c3f3c);
+    color: white;
 }
 
+.OneFlowerTable__table a {
+    color: white;
+}
+
+.OneFlowerTable__table td, th{
+    line-height: 1.4rem;
+    padding: 4px 10px;
+    min-width: 100px;
+    border-bottom: solid 1px rgba(255,255,255,0.5);
+    border-right: solid 1px rgba(255,255,255,0.5);
+}
+
+.OneFlowerTable__table tbody tr:last-child td, tbody tr:last-child th {
+    border-bottom: none;
+}
+
+.OneFlowerTable__table td {
+    border-right: none;
+}
+
+.OneFlowerTable__table th {
+    width: 320px;
+}
+
+.OneFlowerTable__table tr, thead  {
+    margin: 30px;
+}

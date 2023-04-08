@@ -1,6 +1,7 @@
 import React, {
-  FormEvent, useEffect, useRef, useState,
+  FormEvent, useEffect, useState,
 } from 'react';
+
 import { SettingsMode } from '../ChangeSettingsMode/SettingsMode';
 import { axios } from '../../api/axios';
 import { useAuth } from '../../hooks/useAuth';
@@ -54,7 +55,6 @@ export const AllowMailEditor = () => {
           Zapisz
           { loading && <Spinner /> }
         </button>
-
         { error && <p className="error">{ error }</p> }
         { success && <p className="success">Zmiany zostały zapisane.</p> }
       </form>

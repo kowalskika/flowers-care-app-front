@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { FlowerEntity } from 'types';
 import { Link } from 'react-router-dom';
+
+import { FlowerEntity } from 'types';
 import { DeleteButton } from '../common/DeleteButton/DeleteButton';
 import { WateringButton } from '../WateringButton/WateringButton';
 import { InfoButton } from '../common/InfoButton/InfoButton';
@@ -39,8 +40,9 @@ export const FlowersTableRow = (props: Props) => {
       <td>
         <WateringButton id={id} nextWateringAt={nextWateringAt} wateringInterval={wateringInterval} dateChange={dateChange} />
       </td>
-
-      <td className="FlowersTable__last-th">
+      <td
+        className="FlowersTable__last-th"
+      >
         <InfoButton id={id as string} />
         <DeleteButton flower={{ id, name }} onFlowerChange={onFlowerChange} />
       </td>

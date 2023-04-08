@@ -1,3 +1,15 @@
+.EditFlowerForm__table{
+    border-radius: 1rem;
+    text-align: left;
+    width: 60vw;
+    max-width: 1000px;
+    margin: 0 auto 20px ;
+    font-size: 18px;
+    background: -webkit-linear-gradient(left, #85f6c7, #2ac425);
+    background: linear-gradient(to right, #128056, #0c3f3c);
+    color: white;
+}
+
 .EditFlowerForm__tbody input{
     width: 25%;
     font-size: 0.95rem;
@@ -12,7 +24,6 @@
     display: flex;
     justify-content: center;
 }
-
 
 .EditFlowerForm__tbody textarea {
     width: 100%;
@@ -44,11 +55,13 @@
     color: #000000;
     background-color: #b3ea81;
 }
+
 .EditFlowerForm__tbody label {
     position: relative;
     display: flex;
     flex-direction: column;
 }
+
 .EditFlowerForm__tbody label p {
     padding: .5rem;
     font-size: .8rem;
@@ -67,4 +80,3 @@
     background-color: #626262;
     cursor: not-allowed;
 }
-

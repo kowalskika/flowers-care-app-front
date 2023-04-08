@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { FlowerEntity } from 'types';
 import { OneFlowerTableRow } from './OneFlowerTableRow';
 import './OneFlowerTable.css';
@@ -12,8 +13,8 @@ export const OneFlowerTable = ({ flowerInfo }: Props) => {
 
   return (
     <>
-      <h1>{`${name} - szczegóły`}</h1>
-      <table className="one-flower-table">
+      <h1 className="OneFlowerTable__h1">{`${name} - szczegóły`}</h1>
+      <table className="OneFlowerTable__table">
         <tbody>
           <OneFlowerTableRow
             flower={flowerInfo}

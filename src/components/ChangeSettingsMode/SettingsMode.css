@@ -27,7 +27,6 @@
     margin-bottom: 2rem;
 }
 
-
 .SettingsMode__close-btn {
     position: absolute;
     top: .5rem;
@@ -38,7 +37,6 @@
     border: none;
     cursor: pointer;
 }
-
 
 .SettingsMode__content form {
     margin-inline: auto;

@@ -1,12 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 import './ErrorView.css';
+import { GoBackButton } from '../../components/common/GoBackButton/GoBackButton';
 
 export const NotFoundErrorView = () => (
   <article className="ErrorView">
     <p className="ErrorView__top-paraph">404</p>
     <p className="ErrorView__bottom-paraph">Strona której szukasz nie istnieje.</p>
-    <Link className="ErrorView__link" to="/">Wróć do strony głównej</Link>
+    <GoBackButton />
   </article>
 );
