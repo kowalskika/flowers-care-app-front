@@ -16,7 +16,6 @@ export const Register = () => {
   const [passwordRepetition, setPasswordRepetition] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
-
   const loginLinkRef = useRef<HTMLAnchorElement>(null!);
   const {
     emailError,

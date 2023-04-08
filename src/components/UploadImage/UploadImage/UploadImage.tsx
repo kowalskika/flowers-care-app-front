@@ -38,6 +38,7 @@ export const UploadImage = (props: { flowerId: string, onStateChange(urls: strin
       }
     } catch (err) {
       setUploadResponse('Wystąpił błąd. Spróbuj ponownie.');
+      setLoading(false);
     }
   }
 
