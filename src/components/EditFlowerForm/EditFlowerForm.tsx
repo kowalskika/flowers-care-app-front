@@ -1,5 +1,6 @@
 import React, { FormEvent, useState, useEffect } from 'react';
 import { SlRocket, SlPencil, SlClose } from 'react-icons/sl';
+
 import { FlowerEditForm, FlowerEntity } from 'types';
 import { Spinner } from '../common/Spinner/Spinner';
 import { useAxiosPrivate } from '../../hooks/useAxiosPrivate';
@@ -23,7 +24,8 @@ type EditFlowerFormProps = {
 };
 
 export const EditFlowerForm = ({ flower, refreshFlowerList }: EditFlowerFormProps) => {
-  const todayInputValue = new Date().toISOString().split('T')[0];
+  const [loading, setLoading] = useState<boolean>(false);
+  const [isUpdated, setIsUpdated] = useState<boolean>(true);
   const [form, setForm] = useState<FlowerEditForm>({
     name: flower.name,
     wateredAt: flower.wateredAt,
@@ -35,12 +37,11 @@ export const EditFlowerForm = ({ flower, refreshFlowerList }: EditFlowerFormProp
     nextWateringAt: flower.nextWateringAt,
     photosUrl: flower.photosUrl,
   });
-  const nameError = useFlowerValidation(form.name);
 
+  const todayInputValue = new Date().toISOString().split('T')[0];
+  const nameError = useFlowerValidation(form.name);
   const axiosPrivate = useAxiosPrivate();
   const { auth } = useAuth();
-  const [loading, setLoading] = useState<boolean>(false);
-  const [isUpdated, setIsUpdated] = useState<boolean>(true);
 
   useEffect(() => {
     setForm({
@@ -91,11 +92,12 @@ export const EditFlowerForm = ({ flower, refreshFlowerList }: EditFlowerFormProp
   if (loading) {
     return <Spinner />;
   }
+
   if (!isUpdated) {
     return (
       <form onSubmit={sendForm}>
         <h1>Edytuj dane:</h1>
-        <table className="one-flower-table">
+        <table className="EditFlowerForm__table">
           <tbody className="EditFlowerForm__tbody">
             <tr>
               <th>
@@ -182,7 +184,6 @@ export const EditFlowerForm = ({ flower, refreshFlowerList }: EditFlowerFormProp
                 </label>
               </th>
             </tr>
-
             <tr>
               <th>
                 <label>Dodatkowe informacje: <br />

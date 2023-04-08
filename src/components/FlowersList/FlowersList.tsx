@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AxiosError } from 'axios';
+
 import { FlowerEntity } from 'types';
 import { Spinner } from '../common/Spinner/Spinner';
 import { FlowersTable } from './FlowersTable';
@@ -41,11 +42,12 @@ export const FlowersList = () => {
   if (userData === null) return <Spinner />;
 
   return (
-    <div>
+    <>
+      <h1 className="FlowersList__h1"> Twoje kwiaty</h1>
       <FlowersTable
         flowersList={userData}
         onFlowerChange={refreshFlowerList}
       />
-    </div>
+    </>
   );
 };

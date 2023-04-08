@@ -6,7 +6,6 @@ export const FlowersView = () => {
   return (
     <>
       <NavBar page="main" />
-      <h1> Twoje kwiaty</h1>
       <FlowersList />
     </>
   );

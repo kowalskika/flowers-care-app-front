@@ -1,5 +1,10 @@
-
-table {
+.FlowersList__h1 {
+    text-shadow: 1px 1px rgb(234, 234, 208);
+    text-align: center;
+    padding: 20px 0;
+    font-size: 1.8rem;
+}
+.FlowersListTable__table {
     border-radius: 1rem;
     text-align: left;
     width: 60vw;
@@ -11,26 +16,25 @@ table {
     color: white;
 }
 
-table a {
+.FlowersListTable__table a {
     color: white;
 }
 
-table td, table th {
+.FlowersListTable__table td, table th {
     padding: 4px 10px;
     min-width: 100px;
     border-bottom: solid 1px rgba(255,255,255,0.5);
     border-right: solid 1px rgba(255,255,255,0.5);
 }
 
-tbody tr:last-child td, tbody tr:last-child th {
+.FlowersListTable__table tbody tr:last-child td, tbody tr:last-child th {
     border-bottom: none;
 }
 
-.FlowersTable__last-th{
+.FlowersListTable__table .FlowersTable__last-th{
     border-right: none;
 }
 
-table tr, thead  {
+.FlowersListTable__table tr, thead  {
     margin: 30px;
-
 }

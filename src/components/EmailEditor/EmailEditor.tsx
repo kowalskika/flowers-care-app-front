@@ -2,6 +2,7 @@ import React, {
   FormEvent, useEffect, useRef, useState,
 } from 'react';
 import { SlClose } from 'react-icons/sl';
+
 import { SettingsMode } from '../ChangeSettingsMode/SettingsMode';
 import { useUserValidation } from '../../hooks/useRegisterValidation';
 import { axios } from '../../api/axios';
