@@ -1,8 +1,8 @@
 import React, { FormEvent, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+
 import { axiosPrivate } from '../../../api/axios';
 import { useAuth } from '../../../hooks/useAuth';
-
 import { Spinner } from '../../common/Spinner/Spinner';
 
 export const Login = () => {
@@ -10,10 +10,10 @@ export const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+
   const { auth, setAuth } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-
   const from = (location?.state as { from: string })?.from || '/';
 
   useEffect(() => {
@@ -56,7 +56,6 @@ export const Login = () => {
           required
         />
       </label>
-
       <label>Hasło:
         <input
           type="password"
@@ -65,7 +64,6 @@ export const Login = () => {
           required
         />
       </label>
-
       <button
         type="submit"
         disabled={!email || !password || !!error}
@@ -73,12 +71,10 @@ export const Login = () => {
         Zaloguj
         { loading && <Spinner /> }
       </button>
-
       { error && <p className="error">{ error }</p> }
       <p className="redirect-paraph">
         Nie masz jeszcze konta na naszej stronie?<br />Kliknij <Link to="/register">tutaj</Link> aby się zarejestrować.
       </p>
-
     </form>
   );
 };

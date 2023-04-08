@@ -1,8 +1,8 @@
 import React, { ReactNode, useRef } from 'react';
 import { SlClose } from 'react-icons/sl';
 import { useNavigate } from 'react-router-dom';
-import { useScreenBlur } from '../../hooks/useScreenBlur';
 
+import { useScreenBlur } from '../../hooks/useScreenBlur';
 import './SettingsMode.css';
 
 interface Props {

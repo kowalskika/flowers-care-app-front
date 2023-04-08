@@ -103,7 +103,6 @@ export const EmailEditor = () => {
           Zapisz
           { loading && <Spinner /> }
         </button>
-
         { error && <p className="error">{ error }</p> }
         { success && <p className="success">Zmiany zostały zapisane.</p> }
       </form>

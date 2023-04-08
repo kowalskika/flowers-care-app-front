@@ -7,6 +7,7 @@ export const AddButton = (props: { confirm: boolean, nameError?: boolean, name?:
   const {
     confirm, nameError, name, wateredAt,
   } = props;
+
   if (confirm) {
     return (
       <button disabled={!name || !wateredAt || nameError} className="AddButton__a" type="submit">

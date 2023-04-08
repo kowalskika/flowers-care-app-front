@@ -1,7 +1,8 @@
 import React from 'react';
-import './NavBar.css';
 import { Link } from 'react-router-dom';
 import { SlSocialGithub } from 'react-icons/sl';
+
+import './NavBar.css';
 import { SettingButton } from '../SettingsButton/SettingsButton';
 import { AddButton } from '../AddButton/AddButton';
 import { GoBackButton } from '../GoBackButton/GoBackButton';
@@ -9,11 +10,10 @@ import { GoBackButton } from '../GoBackButton/GoBackButton';
 export function NavBar(props: { page: string }) {
   const { page } = props;
   return (
-    <header className="nav-bar__header">
+    <header className="NavBar__header">
       <p>Your Flowers Care</p>
-
       <nav>
-        <ul className="nav-bar__links">
+        <ul className="NavBar__links">
           {page === 'main' && (<li><AddButton confirm={false} /></li>)}
           {page === 'single' && (<li><GoBackButton /></li>)}
           <li>
@@ -30,8 +30,6 @@ export function NavBar(props: { page: string }) {
           </li>
         </ul>
       </nav>
-
     </header>
-
   );
 }

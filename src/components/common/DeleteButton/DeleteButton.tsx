@@ -1,8 +1,8 @@
 import React, { MouseEvent, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { SlTrash } from 'react-icons/sl';
 
 import './DeleteButton.css';
-import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../../hooks/useAuth';
 import { useAxiosPrivate } from '../../../hooks/useAxiosPrivate';
 
@@ -37,9 +37,9 @@ export const DeleteButton = (props: Props) => {
     } catch (err) {
       navigate('/error');
     }
-
     props.onFlowerChange();
   };
+
   return (
     <button type="submit" className={`DeleteButton__btn ${confirm ? 'DeleteButton__btn--confirm' : ''}`} onClick={deleteFlower}>
       { !confirm
