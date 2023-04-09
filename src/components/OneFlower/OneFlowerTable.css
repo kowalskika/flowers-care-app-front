@@ -45,7 +45,7 @@
     margin: 30px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 720px) {
     .OneFlowerTable__table {
         width: 95vw;
         font-size: 0.9rem;

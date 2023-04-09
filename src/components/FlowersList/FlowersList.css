@@ -41,7 +41,7 @@
     margin: 30px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 720px) {
     .FlowersListTable__table{
         width: 95vw;
     }

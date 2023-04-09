@@ -86,7 +86,7 @@
     cursor: not-allowed;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 720px) {
     .EditFlowerForm__table {
         width: 95vw;
     }

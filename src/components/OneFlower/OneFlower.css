@@ -41,7 +41,7 @@
     transition: all 0.5s ease 0s;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 720px) {
     .OneFlower__img {
         width: 90vw;
         margin: 5px auto;
