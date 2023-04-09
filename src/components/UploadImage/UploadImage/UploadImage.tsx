@@ -35,6 +35,7 @@ export const UploadImage = (props: { flowerId: string, onStateChange(urls: strin
         onStateChange(res.data);
         setUploadResponse('Zdjęcie zostało dodane.');
         setLoading(false);
+        window.location.reload();
       }
     } catch (err) {
       setUploadResponse('Wystąpił błąd. Spróbuj ponownie.');
@@ -71,10 +72,12 @@ export const UploadImage = (props: { flowerId: string, onStateChange(urls: strin
       for (let i = 0; i < files.length; i++) {
         let base = await convertBase64(files[i]);
         base64s.push(base);
-        await uploadMultipleImages(base64s);
       }
+      await uploadMultipleImages(base64s);
     }
   };
+
+  if (loading) return <Spinner />;
 
   return (
     <div className="UploadImage__box">
@@ -90,9 +93,7 @@ export const UploadImage = (props: { flowerId: string, onStateChange(urls: strin
         </div>
         )}
         <div>
-          {loading ? (
-            <Spinner />
-          ) : (
+          {loading ? null : (
             <div className="UploadImg">
               <UploadInput uploadImage={uploadImage} />
             </div>
