@@ -1,7 +1,6 @@
 # Flowers care app: front-end
 
-
-![](https://res.cloudinary.com/dkcqqmbge/image/upload/v1681064777/rkvilil2bplwo5rlrw3l.png)
+![FlowersCareApp](https://user-images.githubusercontent.com/125073360/230791706-b947b694-5358-454b-b3e0-fee4cc212b8f.gif)
 
 ## Table of contents
 * [Demo](#demo)
