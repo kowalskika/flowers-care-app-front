@@ -89,14 +89,12 @@ export const EditFlowerForm = ({ flower, refreshFlowerList }: EditFlowerFormProp
     }
   };
 
-  if (loading) {
-    return <Spinner />;
-  }
+  if (loading) return <Spinner />;
 
   if (!isUpdated) {
     return (
       <form onSubmit={sendForm}>
-        <h1>Edytuj dane:</h1>
+        <h1 className="EditFlowerForm__h1">Edytuj dane:</h1>
         <table className="EditFlowerForm__table">
           <tbody className="EditFlowerForm__tbody">
             <tr>
@@ -140,10 +138,7 @@ export const EditFlowerForm = ({ flower, refreshFlowerList }: EditFlowerFormProp
                     onChange={(e) => updateForm(FlowerUpdateForm.wateredAt, e.target.value)}
                   />
                   { (!form.wateredAt) && (
-                    <>
-                      <span><SlClose /></span>
-                      <p>Proszę uzupełnić datę ostatniego podalnia.</p>
-                    </>
+                    <p>Proszę uzupełnić datę ostatniego podalnia.</p>
                   ) }
                 </label>
               </th>

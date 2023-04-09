@@ -4,7 +4,7 @@ import { SlArrowLeftCircle } from 'react-icons/sl';
 
 export const GoBackButton = () => {
   return (
-    <Link to="/">
+    <Link to="/flower">
       <SlArrowLeftCircle /> Powrót
     </Link>
   );

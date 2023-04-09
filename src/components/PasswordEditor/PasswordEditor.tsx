@@ -56,6 +56,8 @@ export const PasswordEditor = () => {
     }
   };
 
+  if (loading) return <Spinner />;
+
   return (
     <SettingsMode>
       <form
@@ -103,7 +105,6 @@ export const PasswordEditor = () => {
         </label>
         <button type="submit" disabled={!newPassword || passwordError || !passwordRep || passwordRepetitionError || !oldPassword || !!error}>
           Zapisz
-          { loading && <Spinner /> }
         </button>
         { error && <p className="error">{ error }</p> }
         { success && <p className="success">Zmiany zostały zapisane.</p> }

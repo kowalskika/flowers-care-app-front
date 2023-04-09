@@ -53,7 +53,8 @@ export const AddFlowerForm = () => {
     }
   };
 
-  if (loading) { return <Spinner />; }
+  if (loading) return <Spinner />;
+
   if (flowerId !== null) {
     navigate('/flower');
   }
@@ -104,10 +105,7 @@ export const AddFlowerForm = () => {
                   onChange={(e) => updateForm(FlowerUpdateForm.wateredAt, e.target.value)}
                 />
                 { (!form.wateredAt) && (
-                  <>
-                    <span className="AddFlowerForm_date_span"><SlClose /></span>
-                    <p>Proszę uzupełnić datę ostatniego podalnia.</p>
-                  </>
+                  <p>Proszę uzupełnić datę ostatniego podalnia.</p>
                 ) }
               </label>
             </th>
