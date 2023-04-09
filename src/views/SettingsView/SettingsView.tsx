@@ -3,12 +3,16 @@ import { Outlet } from 'react-router-dom';
 import { SettingsOptions } from '../../components/SettingsOptions/SettingsOptions';
 
 import './SettingsView.css';
+import { NavBar } from '../../components/common/NavBar/NavBar';
 
 export const SettingsView = () => {
   return (
-    <article className="SettingsView">
-      <SettingsOptions />
-      <Outlet />
-    </article>
+    <>
+      <NavBar page="single" />
+      <article className="SettingsView">
+        <SettingsOptions />
+        <Outlet />
+      </article>
+    </>
   );
 };
