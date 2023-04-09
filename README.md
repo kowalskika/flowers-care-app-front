@@ -4,7 +4,7 @@
 ![FlowersCareApp](https://user-images.githubusercontent.com/125073360/230791706-b947b694-5358-454b-b3e0-fee4cc212b8f.gif)
 
 ## Mobile
-![ezgif com-optimize  width="200](https://user-images.githubusercontent.com/125073360/230792365-dcf51467-a3a5-4f12-a47e-ced7c2986a5a.gif")
+![ezgif com-optimize](https://user-images.githubusercontent.com/125073360/230792365-dcf51467-a3a5-4f12-a47e-ced7c2986a5a.gif)
 
 ## Table of contents
 * [Demo](#demo)
