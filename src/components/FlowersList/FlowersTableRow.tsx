@@ -27,7 +27,7 @@ export const FlowersTableRow = (props: Props) => {
   return (
     <tr>
       <th>
-        <Link to={`/flower/${id}`}>
+        <Link className="FlowersTable__name" to={`/flower/${id}`}>
           {name}
         </Link>
       </th>

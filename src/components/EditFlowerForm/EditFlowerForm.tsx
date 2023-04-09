@@ -138,10 +138,7 @@ export const EditFlowerForm = ({ flower, refreshFlowerList }: EditFlowerFormProp
                     onChange={(e) => updateForm(FlowerUpdateForm.wateredAt, e.target.value)}
                   />
                   { (!form.wateredAt) && (
-                    <>
-                      <span><SlClose /></span>
-                      <p>Proszę uzupełnić datę ostatniego podalnia.</p>
-                    </>
+                    <p>Proszę uzupełnić datę ostatniego podalnia.</p>
                   ) }
                 </label>
               </th>

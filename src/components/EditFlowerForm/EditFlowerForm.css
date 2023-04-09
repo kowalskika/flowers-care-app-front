@@ -18,11 +18,11 @@
 .EditFlowerForm__tbody input{
     width: 25%;
     font-size: 0.95rem;
+    height: 2rem;
 }
 
 .EditFlowerForm__tbody .EditFlowerForm__big-input{
     width: 100%;
-    height: 2rem;
 }
 
 .EditFlowerForm__container {

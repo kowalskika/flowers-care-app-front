@@ -52,6 +52,7 @@ export const UploadImage = (props: { flowerId: string, onStateChange(urls: strin
         onStateChange(res.data);
         setUploadResponse('Zdjęcia zostały dodane.');
         setLoading(false);
+        window.location.reload();
       }
     } catch (err) {
       setUploadResponse('Wystąpił błąd. Spróbuj ponownie.');

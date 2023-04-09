@@ -48,12 +48,14 @@
 @media (max-width: 768px) {
     .OneFlowerTable__table {
         width: 95vw;
-        font-size: 1rem;
-        text-align: center;
+        font-size: 0.9rem;
     }
+    .OneFlowerTable__table th {
+        width: 40vw;
+    }
+
     .OneFlowerTable__table .WateringButton__button {
         font-size: 0.9rem;
-        margin: 0 auto;
     }
 
 }

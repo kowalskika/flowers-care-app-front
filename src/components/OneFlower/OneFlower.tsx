@@ -51,6 +51,7 @@ export const OneFlower = () => {
         const { data } = await axiosPrivate.delete(`upload/${flowerId}/${photoId}?user=${auth.id}`);
         setPhotos(data);
         setConfirm(false);
+        window.location.reload();
       }
     } catch (err) {
       navigate('/error');
@@ -109,7 +110,13 @@ export const OneFlower = () => {
             return (
               <li key={el}>
                 <div className="OneFlower__img">
-                  <button className={`OneFlower__btn ${confirm ? 'OneFlower__btn--confirm' : ''}`} type="submit" onClick={() => deleteImg(el)}>
+                  <button
+                    className={`OneFlower__btn ${confirm ? 'OneFlower__btn--confirm' : ''}`}
+                    type="submit"
+                    onClick={async () => {
+                      await deleteImg(el);
+                    }}
+                  >
                     { !confirm
                       ? <><SlTrash />Usuń</>
                       : <><SlTrash />Potwierdź</>}

@@ -7,6 +7,9 @@
     width: 400px;
     margin: 5px auto;
 }
+.OneFlower__img img{
+    border-radius: 2rem;
+}
 
 .OneFlower__btn {
     top: 40px;
@@ -18,23 +21,34 @@
     gap: .5rem;
     z-index: 1;
     padding: .5rem 1rem;
-    border-radius: .3rem;
-    background-color: #58885f;
+    border-radius: 0.3rem 2rem 0.3rem 0.3rem;
+    background-color: #e55a5a;
     overflow: hidden;
     font-size: 1rem;
     transition: all 0.5s ease 0s;
-    color: white;
+    color: #ffffff;
     width: 140px;
 }
 
 .OneFlower__btn:hover{
     color: #000000;
-    background-color: #b3ea81;
+    background-color: #c70000;
     cursor: pointer;
 }
 
 .OneFlower__btn--confirm {
     color: #ffffff;
-    background-color: #fc4a4a;
     transition: all 0.5s ease 0s;
+}
+
+@media (max-width: 768px) {
+    .OneFlower__img {
+        width: 90vw;
+        margin: 5px auto;
+    }
+    .OneFlower__btn {
+        top: 2.5rem;
+        left: 0;
+        border-radius: 2rem 0.3rem 0.3rem 0.3rem;
+    }
 }

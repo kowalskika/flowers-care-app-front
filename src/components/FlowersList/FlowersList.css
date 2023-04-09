@@ -4,22 +4,7 @@
     padding: 20px 0;
     font-size: 1.8rem;
 }
-@media (max-width: 768px) {
-    .FlowersTable__th-mobile-disable {
-        display: none;
-    }
-    .FlowersListTable__table th, .FlowersListTable__table td {
-        font-size: 1rem;
-        padding: 0.2rem;
-        text-align: center;
-    }
-    .FlowersListTable__table button, .FlowersListTable__table a {
-        font-size: 0.9rem;
-        padding: .4rem .5rem;
-        width: 110px;
-    }
 
-}
 
 .FlowersListTable__table {
     border-radius: 1rem;
@@ -54,4 +39,23 @@
 
 .FlowersListTable__table tr, thead  {
     margin: 30px;
+}
+
+@media (max-width: 768px) {
+    .FlowersListTable__table{
+        width: 95vw;
+    }
+    .FlowersTable__th-mobile-disable {
+        display: none;
+    }
+    .FlowersListTable__table button, .FlowersListTable__table a {
+        font-size: 0.8rem;
+        padding: .4rem .5rem;
+        width: 110px;
+    }
+    .FlowersListTable__table th, .FlowersListTable__table td, .FlowersListTable__table .FlowersTable__name {
+        font-size: 0.9rem;
+        padding: 0.2rem;
+        text-align: center;
+    }
 }
