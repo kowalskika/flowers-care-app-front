@@ -55,6 +55,8 @@ export const EmailEditor = () => {
     }
   };
 
+  if (loading) return <Spinner />;
+
   return (
     <SettingsMode>
       <form
@@ -99,9 +101,11 @@ export const EmailEditor = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
-        <button disabled={!email || emailError || !emailRep || emailRepetitionError || !password || !!error} type="submit">
+        <button
+          disabled={!email || emailError || !emailRep || emailRepetitionError || !password || !!error}
+          type="submit"
+        >
           Zapisz
-          { loading && <Spinner /> }
         </button>
         { error && <p className="error">{ error }</p> }
         { success && <p className="success">Zmiany zostały zapisane.</p> }

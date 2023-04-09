@@ -53,7 +53,8 @@ export const AddFlowerForm = () => {
     }
   };
 
-  if (loading) { return <Spinner />; }
+  if (loading) return <Spinner />;
+
   if (flowerId !== null) {
     navigate('/flower');
   }

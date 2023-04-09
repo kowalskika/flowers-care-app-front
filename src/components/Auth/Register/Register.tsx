@@ -59,6 +59,8 @@ export const Register = () => {
     }
   };
 
+  if (loading) return <Spinner />;
+
   return (
     <form onSubmit={handleSubmit}>
       <h2>Zarejestruj się</h2>
@@ -120,10 +122,9 @@ export const Register = () => {
         disabled={!email || !password || !passwordRepetition || emailError || passwordError || passwordRepetitionError || !!error}
       >
         Zarejestruj
-        { loading && <Spinner /> }
       </button>
       { error && <p className="error">{ error }</p> }
-      { success && <p className="success">Konto zostało utworzone. Kliknij<Link ref={loginLinkRef} to="/login">tutaj</Link> by się zalogować.</p> }
+      { success && <p className="success">Konto zostało utworzone. Kliknij <Link ref={loginLinkRef} to="/login">tutaj</Link> by się zalogować.</p> }
       { !success && <p className="redirect-paraph">Jeśli masz już konto kliknij <Link to="/login">tutaj</Link> aby przejść do strony logowania.</p> }
     </form>
   );

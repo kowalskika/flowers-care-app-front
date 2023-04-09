@@ -45,6 +45,8 @@ export const Login = () => {
     }
   };
 
+  if (loading) return <Spinner />;
+
   return (
     <form onSubmit={handleSubmit}>
       <h2>Zaloguj się do swojego konta</h2>
@@ -69,12 +71,12 @@ export const Login = () => {
         disabled={!email || !password || !!error}
       >
         Zaloguj
-        { loading && <Spinner /> }
       </button>
       { error && <p className="error">{ error }</p> }
       <p className="redirect-paraph">
         Nie masz jeszcze konta na naszej stronie?<br />Kliknij <Link to="/register">tutaj</Link> aby się zarejestrować.
       </p>
     </form>
+
   );
 };

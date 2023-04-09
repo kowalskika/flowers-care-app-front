@@ -35,6 +35,8 @@ export const AllowMailEditor = () => {
     }
   };
 
+  if (loading) return <Spinner />;
+
   return (
     <SettingsMode>
       <form
@@ -53,7 +55,6 @@ export const AllowMailEditor = () => {
         </label>
         <button disabled={!!error} type="submit">
           Zapisz
-          { loading && <Spinner /> }
         </button>
         { error && <p className="error">{ error }</p> }
         { success && <p className="success">Zmiany zostały zapisane.</p> }

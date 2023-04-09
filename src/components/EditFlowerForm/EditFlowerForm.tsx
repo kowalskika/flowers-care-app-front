@@ -89,9 +89,7 @@ export const EditFlowerForm = ({ flower, refreshFlowerList }: EditFlowerFormProp
     }
   };
 
-  if (loading) {
-    return <Spinner />;
-  }
+  if (loading) return <Spinner />;
 
   if (!isUpdated) {
     return (
