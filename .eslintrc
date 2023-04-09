@@ -15,6 +15,7 @@
   },
 
   "rules": {
+    "linebreak-style": "off",
     "import/no-extraneous-dependencies": "off",
     "@typescript-eslint/no-unused-vars": "off",
     "react/jsx-no-constructed-context-values": "off",
