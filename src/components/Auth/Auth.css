@@ -79,12 +79,13 @@
 .Auth .success {
     text-align: center;
     font-size: 1.1rem;
-    color: #00d300;
-    font-weight: 700;
+    color: #7ffa7f;
+    font-weight: 400;
 }
 
 .Auth .success a {
     text-decoration: underline;
+    color: #076741;
 }
 
 .Auth .redirect-paraph {
