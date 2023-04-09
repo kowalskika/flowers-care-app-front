@@ -11,7 +11,7 @@ export function NavBar(props: { page: string }) {
   const { page } = props;
   return (
     <header className="NavBar__header">
-      <p>Your Flowers Care</p>
+      <p className="NavBar__p-mobile-disable">Your Flowers Care</p>
       <nav>
         <ul className="NavBar__links">
           {page === 'main' && (<li><AddButton confirm={false} /></li>)}

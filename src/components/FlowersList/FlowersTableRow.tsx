@@ -31,10 +31,10 @@ export const FlowersTableRow = (props: Props) => {
           {name}
         </Link>
       </th>
-      <td>
+      <td className="FlowersTable__th-mobile-disable">
         <p>{species}</p>
       </td>
-      <td>
+      <td className="FlowersTable__th-mobile-disable">
         <p>{wateredAtNewDate as string}</p>
       </td>
       <td>

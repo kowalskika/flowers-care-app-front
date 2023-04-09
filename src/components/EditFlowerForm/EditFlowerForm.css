@@ -3,11 +3,16 @@
     text-align: left;
     width: 60vw;
     max-width: 1000px;
-    margin: 0 auto 20px ;
+    margin: 0 auto;
     font-size: 18px;
     background: -webkit-linear-gradient(left, #85f6c7, #2ac425);
     background: linear-gradient(to right, #128056, #0c3f3c);
     color: white;
+}
+
+.EditFlowerForm__h1 {
+    font-size: 1.5rem;
+    text-align: center;
 }
 
 .EditFlowerForm__tbody input{
@@ -63,7 +68,7 @@
 }
 
 .EditFlowerForm__tbody label p {
-    padding: .5rem;
+    padding-top: .5rem;
     font-size: .8rem;
     color: rgb(215, 192, 29);
 }
@@ -79,4 +84,23 @@
 .EditButton__a[disabled] {
     background-color: #626262;
     cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+    .EditFlowerForm__table {
+        width: 95vw;
+    }
+    .EditFlowerForm__table th, .EditFlowerForm__table td {
+        font-size: 1rem;
+        padding: 0.3rem 0.3rem 0.5rem;
+        text-align: center;
+    }
+    .EditFlowerForm__table button, .EditFlowerForm__table a {
+        font-size: 0.9rem;
+        padding: .4rem .5rem;
+        width: 110px;
+    }
+    .EditFlowerForm__table input {
+        width: 100%;
+    }
 }

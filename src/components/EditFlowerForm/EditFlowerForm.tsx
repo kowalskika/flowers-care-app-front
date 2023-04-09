@@ -94,7 +94,7 @@ export const EditFlowerForm = ({ flower, refreshFlowerList }: EditFlowerFormProp
   if (!isUpdated) {
     return (
       <form onSubmit={sendForm}>
-        <h1>Edytuj dane:</h1>
+        <h1 className="EditFlowerForm__h1">Edytuj dane:</h1>
         <table className="EditFlowerForm__table">
           <tbody className="EditFlowerForm__tbody">
             <tr>
