@@ -25,6 +25,7 @@ export const FlowersList = () => {
       }
     } catch (err) {
       localStorage.removeItem('user');
+      window.location.reload();
       const { response } = err as AxiosError;
       if (response !== undefined && response.status === 404) {
         navigate('/404');
