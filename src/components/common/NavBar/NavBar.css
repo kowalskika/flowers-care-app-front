@@ -50,6 +50,9 @@
     .NavBar__p-mobile-disable {
         display: none;
     }
+    .NavBar__p-mobile-show{
+    display: block;
+    }
     .NavBar__header {
         min-width: 0
     }
