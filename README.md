@@ -1,14 +1,10 @@
 # Flowers care app: front-end
 
 ## Desktop
-<p align="center">
 ![FlowersCareApp](https://user-images.githubusercontent.com/125073360/230791706-b947b694-5358-454b-b3e0-fee4cc212b8f.gif)
-</p>
 
 ## Mobile
-<p align="center">
 ![mobileapp](https://user-images.githubusercontent.com/125073360/230792691-f6411f37-d10f-4cb7-b672-6da4cf582fc9.gif)
-</p>
 
 ## Table of contents
 * [Demo](#demo)
