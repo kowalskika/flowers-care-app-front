@@ -17,7 +17,7 @@ export function NavBar(props: { page: string }) {
           {page === 'main' && (<li><AddButton confirm={false} /></li>)}
           {page === 'single' && (<li><GoBackButton /></li>)}
           <li>
-            <SettingButton />
+            {page !== 'login' && (<SettingButton />)}
           </li>
           <li>
             <Link

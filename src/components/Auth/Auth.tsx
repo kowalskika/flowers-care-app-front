@@ -10,7 +10,7 @@ export const Auth = () => {
   const location = useLocation();
   return (
     <>
-      <NavBar page="single" />
+      <NavBar page="login" />
       <div className="Auth">
         { location.pathname === '/register' ? <Register /> : <Login /> }
       </div>
