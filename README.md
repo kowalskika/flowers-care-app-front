@@ -17,7 +17,7 @@ Here is a working live demo: https://yourflowerscare.networkmanager.pl
 
 ## General info
 This project is a client side application, made to take care of your flowers.<br>
-Back-end repository - https://github.com/kowalskika/flowers-care-app <br>
+Back-end repository - https://github.com/kowalskika/flowers-care-app-back <br>
 
 The application utilizes a RESTful API to interact with the back-end server, which stores user data and plant care information.
 
